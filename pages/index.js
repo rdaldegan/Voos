@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 
 import { useTransition } from '../src/context/transitionContext';
 
@@ -10,9 +11,6 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   font-size: 62.5%;
-  background-image: url('/concert.jpg');
-  background-position: center;
-  background-size: cover;
   font-family: 'Roboto', sans-serif;
 `;
 
@@ -39,6 +37,11 @@ const Button = styled.button`
   border-radius: 15px;
   font-size: 2em;
   font-family: 'Roboto', sans-serif;
+  cursor: pointer;
+  transition: 0.2s;
+  :active {
+    transform: scale(0.05);
+  }
 `;
 
 export default function Home() {
@@ -63,6 +66,7 @@ export default function Home() {
 
   return (
     <Container>
+      <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
         <Button href="/home" onClick={() => handleClick('/home')}>Vem com a gente</Button>
