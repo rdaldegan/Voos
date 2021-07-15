@@ -1,8 +1,21 @@
 import React from 'react';
+import Router from 'next/router';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Head from 'next/head';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
 
-import { AnimatePresence } from 'framer-motion';
+import TransitionProvider from '../src/context/transitionContext';
+
+import Transition from '../src/components/Transition';
+import Header from '../src/components/Header';
+
+const theme = {
+  colors: {
+    primary: '#F6C60C',
+    secondary: '#57523E',
+  },
+};
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -10,15 +23,24 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+  #nprogress .bar {
+    background: ${theme.colors.secondary} !important;
+  }
 `;
 
-const theme = {
-  colors: {
-    primary: '#0070f3',
-  },
-};
+NProgress.configure({
+  minimum: 0.3,
+  easing: 'ease',
+  speed: 800,
+  showSpinner: false,
+});
 
 export default function App({ Component, pageProps }) {
+  Router.events.on('routeChangeStart', () => {
+    NProgress.start();
+  });
+  Router.events.on('routeChangeComplete', () => NProgress.done());
+  Router.events.on('routeChangeError', () => NProgress.done());
   return (
     <>
       <Head>
@@ -40,14 +62,16 @@ export default function App({ Component, pageProps }) {
         <meta property="twitter:image" content="/logo-black.jpg" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>
-        <AnimatePresence exitBeforeEnter>
+        <TransitionProvider>
+          <Header />
           <Component {...pageProps} />
-        </AnimatePresence>
+          <Transition />
+        </TransitionProvider>
       </ThemeProvider>
     </>
   );
