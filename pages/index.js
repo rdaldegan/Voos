@@ -33,14 +33,14 @@ const Button = styled.button`
   border: none;
   color: black;
   background-color: #F6C60C;
-  padding: 15px;
+  padding: 15px 30px;
   border-radius: 15px;
-  font-size: 2em;
+  font-size: 2.5em;
   font-family: 'Roboto', sans-serif;
   cursor: pointer;
   transition: 0.2s;
   :active {
-    transform: scale(0.05);
+    transform: scale(0.95);
   }
 `;
 
@@ -69,7 +69,7 @@ export default function Home() {
       <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
-        <Button href="/home" onClick={() => handleClick('/home')}>Vem com a gente</Button>
+        <Button href="/home" onClick={() => handleClick('/home')}>Experiencie</Button>
       </Title>
     </Container>
   );

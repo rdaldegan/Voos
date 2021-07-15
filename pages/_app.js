@@ -45,21 +45,21 @@ export default function App({ Component, pageProps }) {
     <>
       <Head>
         <title>Voos Produções</title>
-        <link rel="icon" href="/logo.svg" />
+        <link rel="icon" href="/contrast-logo.svg" />
         <meta name="title" content="Voos Produções" />
         <meta name="description" content="O que faz a sua imaginação voar?" />
 
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="" />
+        <meta property="og:url" content="https://voos.vercel.app/" />
         <meta property="og:title" content="Voos Produções" />
         <meta property="og:description" content="O que faz a sua imaginação voar?" />
-        <meta property="og:image" content="/logo-black.jpg" />
+        <meta property="og:image" content="/contrast-logo.svg" />
 
         <meta property="twitter:card" content="summary_large_image" />
-        <meta property="twitter:url" content="" />
+        <meta property="twitter:url" content="https://voos.vercel.app/" />
         <meta property="twitter:title" content="Voos Produções" />
         <meta property="twitter:description" content="O que faz a sua imaginação voar?" />
-        <meta property="twitter:image" content="/logo-black.jpg" />
+        <meta property="twitter:image" content="/contrast-logo.svg" />
 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
