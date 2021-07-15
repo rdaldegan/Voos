@@ -13,9 +13,11 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100vh;
+  font-size: 62.5%;
   background: url('/concert.jpg');
   background-position: center;
   background-size: cover;
+  font-family: 'Roboto', sans-serif;
 `;
 
 const SVG = styled.svg`
@@ -46,13 +48,19 @@ const Title = styled.div`
     border-left: 8px solid #F6C60C;
     padding: 0 20px;
     color: black;
-    font: Allerta;
-    font-size: 64px;
+    font-size: 6em;
+  }
+  a {
+    text-decoration: none;
+    color: black;
+    background-color: #F6C60C;
+    padding: 15px;
+    border-radius: 15px;
+    font-size: 2em;
   }
 `;
 
 export default function Home() {
-  const exitAnimationRef = useRef(null);
   const enterAnimationRef = useRef(null);
   useEffect(() => {
     enterAnimationRef.current = anime({
@@ -70,7 +78,7 @@ export default function Home() {
     <Container>
       <Title>
         <h2>O que faz sua imaginação voar?</h2>
-        <Link href="/sobre">Mudar de pagina</Link>
+        <Link href="/home">Vem com a gente</Link>
       </Title>
       <SVG
         version="1.1"
