@@ -13,7 +13,7 @@ import Header from '../src/components/Header';
 const theme = {
   colors: {
     primary: '#F6C60C',
-    secondary: '#57523E',
+    secondary: '#47453c',
   },
 };
 
@@ -22,6 +22,8 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+    background-color: #FFFFFF;
   }
   #nprogress .bar {
     background: ${theme.colors.secondary} !important;
@@ -64,6 +66,9 @@ export default function App({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet" />
       </Head>
       <GlobalStyle />
       <ThemeProvider theme={theme}>

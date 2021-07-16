@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
+import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
+
+const Container = styled.div`
+`;
 
 export default function pages() {
   const {
@@ -13,8 +17,8 @@ export default function pages() {
     setTransitionTo('header');
   }, []);
   return (
-    <div>
+    <Container>
       oi
-    </div>
+    </Container>
   );
 }

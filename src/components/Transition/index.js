@@ -42,6 +42,8 @@ export default function Transition() {
     setTransitionOpen(false);
     setTransitionTo('index');
     setTimeout(() => {
+      setTransitionTo('header');
+      setTransitionOpen(true);
       router.push(path);
     }, 1300);
   }
@@ -102,7 +104,7 @@ export default function Transition() {
       </SVG>
       <Voos
         src="/voos.svg"
-        onClick={() => handleClick('/')}
+        onClick={() => handleClick('/home')}
         canClick={router.pathname === '/' ? 'none' : 'auto'}
         width={transitionTo === 'index' ? '50%' : '20%'}
         height={transitionTo === 'index' ? '50%' : '15%'}

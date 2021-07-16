@@ -29,10 +29,10 @@ const Title = styled.div`
 `;
 
 const Button = styled.button`
-  background: none;
+  background: #F6C60C;
   border: none;
   color: black;
-  background-color: #F6C60C;
+  border-radius: 15px;
   padding: 15px 30px;
   border-radius: 15px;
   font-size: 2.5em;
