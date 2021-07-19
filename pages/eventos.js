@@ -20,6 +20,7 @@ export default function Eventos() {
 
   return (
     <Container>
+      Eventos
     </Container>
   );
 }
