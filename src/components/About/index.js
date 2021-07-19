@@ -31,8 +31,7 @@ const Container = styled.div`
     }
     .mission, .values{
       position: relative;
-      margin-right: auto;
-      margin-left: auto;
+      margin: 40px auto;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -84,7 +83,7 @@ const Container = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      height: 100%;
+      height: 120%;
       transform: translateX(-25%);
       z-index: -1;
     }

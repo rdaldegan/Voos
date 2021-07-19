@@ -105,7 +105,7 @@ const BgDiv = styled.div.attrs(
   pointer-events: none;
   content: '';
   position: absolute;
-  transform: translate(-49%, -49%);
+  transform: translate(-45%, -35%);
   background: #F6C60C;
   border-radius: 50%;
   width: 0;

@@ -80,9 +80,8 @@ export default function Header() {
     setTransitionOpen(false);
     setTransitionTo('index');
     setTimeout(() => {
-      if (router.pathname === path) {
-        router.reload(path);
-      } else router.push(path);
+      if (router.pathname === path) router.reload(path);
+      else router.push(path);
     }, 1300);
   }
   return (

@@ -109,7 +109,7 @@ const BgDiv = styled.div.attrs(
   pointer-events: none;
   content: '';
   position: absolute;
-  transform: translate(-49%, -49%);
+  transform: translate(-45%, -35%);
   background: #F6C60C;
   border-radius: 50%;
   width: 0;
@@ -121,8 +121,7 @@ export default function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [submitted, setSubmitted] = useState(false);
+  const [feedback, setFeedback] = useState('');
 
   const buttonRef = useRef(null);
   const [coordX, setCoordX] = useState(0);
@@ -134,34 +133,44 @@ export default function ContactForm() {
   }
 
   function handleSubmit(e) {
-    setSubmitted(false);
-    setLoading(true);
     e.preventDefault();
-    const data = {
-      name,
-      email,
-      message,
-    };
-    fetch('/api/contact', {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json, text/plain, */*',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then((res) => {
-        setLoading(false);
-        if (res.status === 200) {
-          setSubmitted(true);
-          setName('');
-          setEmail('');
-          setMessage('');
-        }
+    if (!email || !name || !message) {
+      setFeedback('Preencha todos os campos');
+    }
+    if (email.indexOf('@') < 0) {
+      setFeedback('O email precisa de um @');
+    }
+    if (email.indexOf('@') === 0 || email.length) {
+      setFeedback('Email inválido');
+    } else {
+      setFeedback('Enviando...');
+      const data = {
+        name,
+        email,
+        message,
+      };
+      fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json, text/plain, */*',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       })
-      .catch(() => {
-        setLoading(false);
-      });
+        .then((res) => {
+          setFeedback('');
+          if (!res.ok) setFeedback(res.statusText);
+          if (res.status === 200) {
+            setFeedback('Email enviado com sucesso!');
+            setName('');
+            setEmail('');
+            setMessage('');
+          }
+        })
+        .catch((err) => {
+          setFeedback(err);
+        });
+    }
   }
 
   return (
@@ -198,8 +207,7 @@ export default function ContactForm() {
           <span>Enviar</span>
         </CustomButton>
         <div className="feedback">
-          {loading && <span>Enviando...</span>}
-          {submitted && <span>Email enviado com sucesso!</span>}
+          {feedback && <span>{feedback}</span>}
         </div>
       </form>
     </Container>

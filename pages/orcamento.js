@@ -7,6 +7,31 @@ const Container = styled.div`
   min-height: 100vh;
 `;
 
+const Cover = styled.div`
+  width: 100vw;
+  height: ${(props) => props.heigth};
+  margin: 0 0 50px 0;
+  background-image: url(${(props) => props.coverUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 100% 25%;
+  mask-image: url(${(props) => props.pathUrl});
+  mask-repeat: no-repeat;
+  mask-position: center center;
+  mask-size: cover;
+  h2 {
+    font-family: 'Otomanopee One', sans-serif;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -25%);
+    text-align: center;
+    width: 50vw;
+    color: white;
+    font-size: 2.5rem;
+  }
+`;
+
 export default function Orcamento() {
   const {
     setTransitionTo,
@@ -20,7 +45,12 @@ export default function Orcamento() {
 
   return (
     <Container>
-      Orcamento
+      <Cover coverUrl="/home-cover3.jpg" pathUrl="/home-cover-clip-path.svg" heigth="600px">
+        <h2>
+          {`Nos conte sobre o seu evento que a gente 
+          faz ele acontecer da melhor forma pra você`}
+        </h2>
+      </Cover>
     </Container>
   );
 }

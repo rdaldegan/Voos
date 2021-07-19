@@ -32,7 +32,6 @@ const CustomButton = styled.button`
   position: relative;
   background: #F6C60C;
   border: none;
-  color: black;
   border-radius: 15px;
   padding: 15px 30px;
   border-radius: 15px;
@@ -54,10 +53,10 @@ const CustomButton = styled.button`
     }
   }
   span{
+    color: #47453c;
     position: relative;
     pointer-events: none;
     z-index: 1;
-    font-weight: 600;
   }
 `;
 
@@ -72,8 +71,8 @@ const BgDiv = styled.div.attrs(
   pointer-events: none;
   content: '';
   position: absolute;
-  transform: translate(-49%, -49%);
-  background: #47453c;
+  transform: translate(-45%, -35%);
+  background: #A37D05;
   border-radius: 50%;
   width: 0;
   height: 0;
@@ -130,7 +129,7 @@ export default function Home() {
               buttonRef.current ? Math.floor((coordY / buttonRef.current.clientHeight) * 100) : 0
             }
           />
-          <span>Faça parte</span>
+          <span>FAÇA PARTE</span>
         </CustomButton>
       </Title>
     </Container>
