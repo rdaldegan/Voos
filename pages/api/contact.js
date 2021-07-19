@@ -22,7 +22,7 @@ export default async function (req, res) {
     ${req.body.email}</p>`,
   };
   return new Promise((resolve) => {
-    transporter.sendMail(mailData, (err, info) => {
+    transporter.sendMail(mailData, (err) => {
       if (err) {
         res.status(400).end();
         return resolve();
