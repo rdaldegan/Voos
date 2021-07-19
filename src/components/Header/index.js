@@ -56,7 +56,7 @@ const headerItens = [
   },
   {
     name: 'Eventos',
-    href: '/portfolio',
+    href: '/eventos',
   },
   {
     name: 'Calendário',
@@ -64,7 +64,7 @@ const headerItens = [
   },
   {
     name: 'Orçamento',
-    href: '/orçamento',
+    href: '/orcamento',
   },
 ];
 

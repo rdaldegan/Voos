@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
@@ -60,7 +59,6 @@ const data = [
 ];
 
 export default function pages() {
-  const router = useRouter();
   const {
     setTransitionTo,
     setTransitionOpen,
@@ -72,16 +70,6 @@ export default function pages() {
     setTransitionOpen(true);
     setTransitionTo('header');
   }, []);
-
-  function handleClick(path) {
-    setTransitionOpen(false);
-    setTransitionTo('index');
-    setTimeout(() => {
-      if (router.pathname === path) {
-        router.reload(path);
-      } else router.push(path);
-    }, 1300);
-  }
 
   return (
     <Container>
@@ -97,9 +85,6 @@ export default function pages() {
       </div>
       <SocialProof data={citationsList} />
       <MailchimpForm />
-      <button type="button" onClick={() => handleClick('/')}>
-        Botao
-      </button>
     </Container>
   );
 }
