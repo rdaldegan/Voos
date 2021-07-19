@@ -34,23 +34,24 @@ const Container = styled.div`
     mask-size: contain;
   }
 
-  .facebookIcon {
+  .social-media-icons{
     grid-row-start: 3;
     grid-row-end: 4;
     grid-column-start: 3;
-    grid-column-end: 4;
+    grid-column-end: 5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .facebookIcon, .instagramIcon{
+    margin: 0 15px;
+    cursor: pointer;
     width: 70px;
     margin-left: auto;
   }
 
-  .instagramIcon{
-    grid-row-start: 3;
-    grid-row-end: 4;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    width: 70px;
-    margin-left: auto;
-  }
 `;
 
 const Citacao = styled.div`
@@ -75,25 +76,8 @@ const Citacao = styled.div`
     font-size: 2.5rem;
   }
 `;
-const data = [
-  {
-    text: 'Foda de mais! Esses caras sabem fazer um role truvante e responsa',
-    author: 'fulano',
-    url: '/social-propf.jpg',
-  },
-  {
-    text: 'sadas d asdasda sd asdasdas dasda',
-    author: 'sicrano',
-    url: '/social-propf.jpg',
-  },
-  {
-    text: 'asdaas sda asdsada sdasddas dasssssss sasa',
-    author: 'beltrano',
-    url: '/social-propf.jpg',
-  },
-];
 
-export default function SocialProof() {
+export default function SocialProof({ data }) {
   const citacoes = data;
   const [currentItem, setCurrentItem] = useState(0);
 
@@ -118,7 +102,7 @@ export default function SocialProof() {
   }, [currentItem]);
 
   return (
-    <Container className="social-proof">
+    <Container>
       <div className="carrousel">
         {citacoes.map((current, index) => {
           let translateX = '0px';
@@ -137,8 +121,14 @@ export default function SocialProof() {
         })}
       </div>
       <img className="sp-img" src="/social-proof.jpg" alt="Foto de pessoas em festa" />
-      <img className="instagramIcon" src="/instagram.svg" alt="Instagram" />
-      <img className="facebookIcon" src="/facebook.svg" alt="Facebook" />
+      <div className="social-media-icons">
+        <a href="https://www.instagram.com/voosproducoes/">
+          <img className="instagramIcon" src="/instagram.svg" alt="Instagram" />
+        </a>
+        <a href="https://www.facebook.com/Voosproducoes/">
+          <img className="facebookIcon" src="/facebook.svg" alt="Facebook" />
+        </a>
+      </div>
     </Container>
   );
 }

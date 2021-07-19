@@ -9,6 +9,7 @@ import TransitionProvider from '../src/context/transitionContext';
 
 import Transition from '../src/components/Transition';
 import Header from '../src/components/Header';
+import Footer from '../src/components/Footer';
 
 const theme = {
   colors: {
@@ -66,6 +67,15 @@ export default function App({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap" rel="stylesheet" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
+        <link href="https://fonts.googleapis.com/css2?family=Carter+One&display=swap" rel="stylesheet" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=Merienda&display=swap" rel="stylesheet" />
@@ -76,6 +86,7 @@ export default function App({ Component, pageProps }) {
           <Header />
           <Component {...pageProps} />
           <Transition />
+          <Footer />
         </TransitionProvider>
       </ThemeProvider>
     </>

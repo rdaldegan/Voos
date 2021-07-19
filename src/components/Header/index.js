@@ -9,8 +9,8 @@ const Container = styled.nav`
   overflow: hidden;
   top: 0;
   left: 0;
-  z-index: 1;
-  width: 50vw;
+  z-index: 302;
+  width: 60vw;
   height: 6vh;
   font-size: 62.5%;
   display: flex;
@@ -26,8 +26,8 @@ const Container = styled.nav`
     justify-content: space-around;
   }
   li{
-    margin: 0 0 0 2em;
-    
+    margin: 0 2vw;
+    white-space: nowrap;
     transition: 0.1s;
     :hover {
       transform: scale(1.05);
@@ -41,7 +41,8 @@ const Container = styled.nav`
     background: none;
     border: none;
     font-family: 'Roboto', sans-serif;
-    font-size: 3em;
+    font-weight: bolder;
+    font-size: 2.5em;
     line-height: 2.5em;
     color: #57523E;
     cursor: pointer;
@@ -51,11 +52,15 @@ const Container = styled.nav`
 const headerItens = [
   {
     name: 'Quem Somos',
-    href: '/sobre',
+    href: '/home',
   },
   {
     name: 'Eventos',
     href: '/portfolio',
+  },
+  {
+    name: 'Calendário',
+    href: '/calendario',
   },
   {
     name: 'Orçamento',
