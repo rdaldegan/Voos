@@ -13,7 +13,7 @@ const Container = styled.div`
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr;
+    grid-template-rows: 1fr 3fr 3fr;
 
     .header{
       grid-row-start: 1;
@@ -30,15 +30,18 @@ const Container = styled.div`
       }
     }
     .mission, .values{
+      width: 100%;
+      height: 100%;
       position: relative;
-      margin: 40px auto;
+      margin: auto;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center;
       width: 80%;
   
       h3{
+        margin: 0;
         font-family: 'Carter One', cursive;
         font-size: 3rem;
       }
@@ -83,7 +86,7 @@ const Container = styled.div`
       position: absolute;
       top: 0;
       left: 0;
-      height: 120%;
+      height: 100%;
       transform: translateX(-25%);
       z-index: -1;
     }

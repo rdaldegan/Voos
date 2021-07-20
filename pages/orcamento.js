@@ -5,6 +5,11 @@ import { useTransition } from '../src/context/transitionContext';
 
 const Container = styled.div`
   min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const Cover = styled.div`
@@ -47,7 +52,7 @@ export default function Orcamento() {
     <Container>
       <Cover coverUrl="/home-cover3.jpg" pathUrl="/home-cover-clip-path.svg" heigth="600px">
         <h2>
-          {`Nos conte sobre o seu evento que a gente 
+          {`Nos conte sobre o seu evento e a gente 
           faz ele acontecer da melhor forma pra você`}
         </h2>
       </Cover>
