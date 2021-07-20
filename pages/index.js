@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
 import { useTransition } from '../src/context/transitionContext';
+import CustomBtn from '../src/components/CustomBtn';
 
 const Container = styled.div`
   overflow: hidden;
@@ -28,72 +29,12 @@ const Title = styled.div`
   }
 `;
 
-const CustomButton = styled.button`
-  position: relative;
-  background: #F6C60C;
-  border: none;
-  border-radius: 15px;
-  padding: 15px 30px;
-  border-radius: 15px;
-  font-size: 2rem;
-  letter-spacing: 1px;
-  font-family: 'Roboto', sans-serif;
-  cursor: pointer;
-  overflow: hidden;
-  :hover{
-    div{
-      width: 100px;
-      height: 100px;
-    }
-  }
-  :active{
-    div{
-      width: 1000px;
-      height: 1000px;
-    }
-  }
-  span{
-    color: #47453c;
-    position: relative;
-    pointer-events: none;
-    z-index: 1;
-  }
-`;
-
-const BgDiv = styled.div.attrs(
-  ({ coordX, coordY }) => ({
-    style: {
-      top: `${coordY}%`,
-      left: `${coordX}%`,
-    },
-  }),
-)`
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  transform: translate(-45%, -35%);
-  background: #A37D05;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  transition: width 0.4s, height 0.4s;
- `;
-
 export default function Home() {
   const router = useRouter();
   const {
     setTransitionTo,
     setTransitionOpen,
   } = useTransition();
-
-  const buttonRef = useRef(null);
-  const [coordX, setCoordX] = useState(0);
-  const [coordY, setCoordY] = useState(0);
-
-  function handleMouseMove(e) {
-    setCoordX(e.nativeEvent.offsetX);
-    setCoordY(e.nativeEvent.offsetY);
-  }
 
   function handleClick(path) {
     setTransitionOpen(false);
@@ -113,24 +54,7 @@ export default function Home() {
       <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
-        <CustomButton
-          href="/home"
-          ref={buttonRef}
-          type="button"
-          className="button"
-          onClick={() => handleClick('/home')}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <BgDiv
-            coordX={
-              buttonRef.current ? Math.floor((coordX / buttonRef.current.clientWidth) * 100) : 0
-            }
-            coordY={
-              buttonRef.current ? Math.floor((coordY / buttonRef.current.clientHeight) * 100) : 0
-            }
-          />
-          <span>FAÇA PARTE</span>
-        </CustomButton>
+        <CustomBtn handleClick={() => handleClick('/home')} text="FAÇA PARTE" theme={{ textColor: '#47453c', btnBg: '#F6C60C', effectBg: '#A37D05' }} />
       </Title>
     </Container>
   );

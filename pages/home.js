@@ -7,8 +7,8 @@ import SocialProof from '../src/components/SocialProof';
 import MailchimpForm from '../src/components/MailchimpForm';
 
 const Container = styled.div`
-  min-height: 100vh;
   overflow: hidden;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;

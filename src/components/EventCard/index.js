@@ -1,9 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
+
+import { useTransition } from '../../context/transitionContext';
+import CustomBtn from '../CustomBtn';
 
 const Container = styled.div`
-  background: linear-gradient( rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6) ), url(${(props) => props.bgImg});
+  background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${(props) => props.bgImg});
   background-position: center;
   background-size: cover;
   box-shadow:
@@ -19,7 +22,7 @@ const Container = styled.div`
             user-select: none;
 
   width: 80%;
-  height: 250px;
+  height: 400px;
   margin: 40px;
   border-radius: 8px;
   display: grid;
@@ -33,6 +36,9 @@ const Container = styled.div`
     align-items: center;
     justify-content: space-around;
     pointer-events: none;
+    img{
+      height: 80%;
+    }
   }
 
   .course-date {
@@ -53,28 +59,12 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    a{
-      font-family: 'Otomanopee One', sans-serif;
-      width: 200px;
-      height: 60px;
-      border-radius: 25px;
-      background: ${(props) => props.colors.primary};
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0px 4px 4px ${(props) => props.colors.primary};
-      font-size: 25px;
-      font-weight: bolder;
-      pointer-events: all;
-      color: ${(props) => props.colors.secondary};
-      text-decoration: none;
-      transition: 0.3s;
-      :hover {
-        transform: scale(1.1);
-      }
-      :active{
-        transform: scale(1);
-      }
+    button{
+      box-shadow:
+        0 2.8px 2.2px ${(props) => `${props.colors.primary}5`},
+        0 6.7px 5.3px ${(props) => `${props.colors.primary}10`},
+        0 12.5px 10px ${(props) => `${props.colors.primary}15`},
+        0 22.3px 17.9px ${(props) => `${props.colors.primary}20`},
     }
   }
 `;
@@ -109,9 +99,14 @@ const Mes = styled.span.attrs(
 `;
 
 export default function SincCourseAd({
-  img, dia, mes, ano, theme, backgroundImg,
+  img, name, dia, mes, ano, theme, backgroundImg, href,
 }) {
+  const router = useRouter();
   const ref = useRef(null);
+  const {
+    setTransitionTo,
+    setTransitionOpen,
+  } = useTransition();
 
   const [coordX, setCoordX] = useState(0);
 
@@ -123,6 +118,15 @@ export default function SincCourseAd({
     setCoordX(e.nativeEvent.offsetX);
   }
 
+  function handleClick(path) {
+    setTransitionOpen(false);
+    setTransitionTo('index');
+    setTimeout(() => {
+      if (router.pathname === path) router.reload(path);
+      else router.push(path);
+    }, 1300);
+  }
+
   return (
     <Container
       bgImg={backgroundImg}
@@ -131,7 +135,7 @@ export default function SincCourseAd({
       ref={ref}
     >
       <div className="course-infos">
-        <img src={img} alt="Foto de capa do evento" />
+        <img src={img} alt={`Evento ${name}`} />
       </div>
       <div className="course-date">
         <DiaAno
@@ -156,7 +160,7 @@ export default function SincCourseAd({
         </DiaAno>
       </div>
       <div className="subscrible-link">
-        <Link href="/">SAIBA MAIS</Link>
+        <CustomBtn handleClick={() => handleClick(href)} text="Saiba Mais" theme={{ textColor: theme.primary, btnBg: theme.bg, effectBg: `${theme.primary}35` }} />
       </div>
     </Container>
   );

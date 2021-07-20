@@ -8,27 +8,26 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
+  
+  .header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('/brush-stroke-banner-7.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    h2{
+      font-family: 'Carter One', cursive;
+      color: #47453c;
+      font-size: 4.5rem;
+    }
+  }
   .content{
     width: 80%;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 3fr 3fr;
+    grid-template-rows: 1fr 1fr;
 
-    .header{
-      grid-row-start: 1;
-      grid-row-end: 2;
-      grid-column-start: 1;
-      grid-column-end: 3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      h2{
-        font-family: 'Carter One', cursive;
-        color: #F6C60C;
-        font-size: 4.5rem;
-      }
-    }
     .mission, .values{
       width: 100%;
       height: 100%;
@@ -97,12 +96,12 @@ export default function About() {
   return (
     <Container>
       <div className="background" />
+      <div className="header">
+        <h2>Dando asas ao Hip Hop</h2>
+      </div>
       <div className="content">
-        <div className="header">
-          <h2>Dando asas ao Hip Hop</h2>
-        </div>
         <div className="text-container">
-          <img className="bg-img" src="/brush-stroke-banner-7.svg" alt="imagem de mancha de tinta" />
+          <img className="bg-img" src="/brush-stroke-banner-4.svg" alt="imagem de mancha de tinta" />
           <div className="mission">
             <h3>
               Nossa Missão
@@ -118,12 +117,14 @@ export default function About() {
         <img className="mission-img" src="/about.jpg" alt="Foto de evento" />
         <img className="values-img" src="/about2.jpg" alt="Foto de evento" />
         <div className="text-container">
-          <img className="bg-img" src="/brush-stroke-banner-6.svg" alt="imagem de mancha de tinta" />
+          <img className="bg-img" src="/brush-stroke-banner-3.svg" alt="imagem de mancha de tinta" />
           <div className="values">
             <h3>
               Valores
             </h3>
             <ul>
+              <li>Lazer</li>
+              <li>Dar voz</li>
               <li>Segurança</li>
               <li>Diversidade</li>
               <li>Promoção de cultura</li>

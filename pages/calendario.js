@@ -3,14 +3,39 @@ import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
 import EventCard from '../src/components/EventCard';
+import MailChimpForm from '../src/components/MailchimpForm';
 
 const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
   width: 100%;
+  margin-bottom: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  
+  .header{
+    background-image: url('/brush-stroke-banner-6.svg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    h2{
+      font-family: 'Carter One', cursive;
+      color: #47453c;
+      font-size: 4.5rem;
+    }
+  }
+  .no-events{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .warning{
+      font-size: 2rem;
+      width: 80%;
+    }
+  }
 `;
 
 const Cover = styled.div`
@@ -18,7 +43,7 @@ const Cover = styled.div`
   height: ${(props) => props.heigth};
   margin: 0 0 50px 0;
   background-image: url(${(props) => props.coverUrl});
-  background-size: cover;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: 100% 25%;
   mask-image: url(${(props) => props.pathUrl});
@@ -38,7 +63,35 @@ const Cover = styled.div`
   }
 `;
 
-export default function Calendario() {
+export async function getStaticProps() {
+  const base = process.env.API_BASE_URL;
+
+  const url = new URL('/api/calendario', base);
+  let nextEvents = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json, text/plain, */*',
+      'Content-Type': 'application/json',
+    },
+  })
+    .then((response) => response.json())
+    .then((response) => response)
+    .catch((err) => console.log(err));
+
+  if (nextEvents) {
+    nextEvents = nextEvents[0].data;
+  } else {
+    nextEvents = [];
+  }
+
+  return {
+    props: {
+      nextEvents,
+    },
+  };
+}
+
+export default function Calendario({ nextEvents }) {
   const {
     setTransitionTo,
     setTransitionOpen,
@@ -59,7 +112,31 @@ export default function Calendario() {
           </h2>
         </div>
       </Cover>
-      <EventCard img="/event-title.png" backgroundImg="/event-banner.png" theme={{ primary: '#A37D05', secondary: '#47453c', bg: '#F6C60C' }} dia={12} mes="agosto" ano={2022} />
+      <div className="header">
+        <h2>Próximos eventos:</h2>
+      </div>
+      {nextEvents.length > 0 && nextEvents.map((event) => (
+        <EventCard
+          key={event.name}
+          img={event.img}
+          name={event.name}
+          href={event.href}
+          backgroundImg={event.backgroundImg}
+          theme={event.theme}
+          dia={event.dia}
+          mes={event.mes}
+          ano={event.ano}
+        />
+      ))}
+
+      {nextEvents.length === 0 && (
+        <div className="no-events">
+          <h3 className="warning">
+            Estamos dando um intervalo nos trabalhos, mas logo voltaremos com muito mais!
+          </h3>
+          <MailChimpForm />
+        </div>
+      )}
     </Container>
   );
 }

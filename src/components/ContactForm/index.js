@@ -1,6 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
+
+import CustomBtn from '../CustomBtn';
 
 const Container = styled.div`
   width: 100%;
@@ -12,7 +14,7 @@ const Container = styled.div`
   form{
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 2fr 1fr 1fr;
+    grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr;
 
     input,
     textarea{
@@ -68,79 +70,19 @@ const Container = styled.div`
   }
 `;
 
-const CustomButton = styled.button`
-  position: relative;
-  border: none;
-  background-color: #47453c;
-  color: white;
-  border-radius: 8px;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  overflow: hidden;
-  :hover{
-    div{
-      width: 80px;
-      height: 80px;
-    }
-  }
-  :active{
-    div{
-      width: 1000px;
-      height: 1000px;
-    }
-  }
-  span{
-      position: relative;
-      pointer-events: none;
-      z-index: 1;
-      font-weight: 600;
-    }
-`;
-
-const BgDiv = styled.div.attrs(
-  ({ coordX, coordY }) => ({
-    style: {
-      top: `${coordY}%`,
-      left: `${coordX}%`,
-    },
-  }),
-)`
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  transform: translate(-45%, -35%);
-  background: #F6C60C;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  transition: width 0.2s, height 0.2s;
- `;
-
 export default function ContactForm() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
   const [feedback, setFeedback] = useState('');
 
-  const buttonRef = useRef(null);
-  const [coordX, setCoordX] = useState(0);
-  const [coordY, setCoordY] = useState(0);
-
-  function handleMouseMove(e) {
-    setCoordX(e.nativeEvent.offsetX);
-    setCoordY(e.nativeEvent.offsetY);
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    if (!email || !name || !message) {
+    if (email === '' || name === '' || message === '') {
       setFeedback('Preencha todos os campos');
-    }
-    if (email.indexOf('@') < 0) {
+    } else if (email.indexOf('@') < 0) {
       setFeedback('O email precisa de um @');
-    }
-    if (email.indexOf('@') === 0 || email.length) {
+    } else if (email.indexOf('@') === 0 || email.indexOf('@') === email.length) {
       setFeedback('Email inválido');
     } else {
       setFeedback('Enviando...');
@@ -189,23 +131,7 @@ export default function ContactForm() {
           <label htmlFor="message">Mensagem</label>
           <textarea rows="5" cols="60" name="Meesage" onChange={(e) => { setMessage(e.target.value); }} value={message} />
         </div>
-        <CustomButton
-          className="btn"
-          ref={buttonRef}
-          type="submit"
-          onClick={(e) => handleSubmit(e)}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <BgDiv
-            coordX={
-              buttonRef.current ? Math.floor((coordX / buttonRef.current.clientWidth) * 100) : 0
-            }
-            coordY={
-              buttonRef.current ? Math.floor((coordY / buttonRef.current.clientHeight) * 100) : 0
-            }
-          />
-          <span>Enviar</span>
-        </CustomButton>
+        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" theme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
         <div className="feedback">
           {feedback && <span>{feedback}</span>}
         </div>

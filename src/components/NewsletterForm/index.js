@@ -1,6 +1,8 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { decode } from 'html-entities';
 import styled from 'styled-components';
+
+import CustomBtn from '../CustomBtn';
 
 const Container = styled.div`
   background-color: #F6C60C;
@@ -38,7 +40,7 @@ const Container = styled.div`
       font-size: 1.5rem;
     }
     input {
-      margin: 10px;
+      margin: 10px 10px 20px 10px;
       padding: 10px 15px;
       background: none;
       border: 4px solid #47453c;
@@ -48,7 +50,6 @@ const Container = styled.div`
       :focus {
         outline: none;
       }
-      
     }
   }
   input:-webkit-autofill,
@@ -61,73 +62,17 @@ const Container = styled.div`
   }
 `;
 
-const CustomButton = styled.button`
-  position: relative;
-  background: #47453c;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  margin: 20px 0 0 0;
-  width: 60%;
-  height: 60px;
-  font-size: 1.5rem;
-  letter-spacing: 1px;
-  cursor: pointer;
-  overflow: hidden;
-  :hover{
-    div{
-      width: 80px;
-      height: 80px;
-    }
-  }
-  :active{
-    div{
-      width: 1000px;
-      height: 1000px;
-    }
-  }
-  span{
-    position: relative;
-    pointer-events: none;
-    z-index: 1;
-    font-weight: 600;
-  }
-`;
-
-const BgDiv = styled.div.attrs(
-  ({ coordX, coordY }) => ({
-    style: {
-      top: `${coordY}%`,
-      left: `${coordX}%`,
-    },
-  }),
-)`
-  pointer-events: none;
-  content: '';
-  position: absolute;
-  transform: translate(-45%, -35%);
-  background: #F6C60C;
-  border-radius: 50%;
-  width: 0;
-  height: 0;
-  transition: width 0.2s, height 0.2s;
- `;
-
 export default function NewsletterForm({ status, message, onValidated }) {
   const [error, setError] = useState(null);
   const [email, setEmail] = useState(null);
   const [name, setName] = useState(null);
-
-  const buttonRef = useRef(null);
-  const [coordX, setCoordX] = useState(0);
-  const [coordY, setCoordY] = useState(0);
 
   /**
    * Handle form submit.
    *
    * @return {{value}|*|boolean|null}
    */
-  const handleFormSubmit = () => {
+  function handleFormSubmit() {
     setError(null);
 
     if (!email || !name) {
@@ -136,7 +81,7 @@ export default function NewsletterForm({ status, message, onValidated }) {
     }
     const isFormValidated = onValidated({ EMAIL: email, NAME: name });
     return email && email.indexOf('@') > -1 && isFormValidated;
-  };
+  }
 
   /**
    * Handle Input Key Event.
@@ -183,10 +128,6 @@ export default function NewsletterForm({ status, message, onValidated }) {
         return mess ? decode(mess) : null;
     }
   }
-  function handleMouseMove(e) {
-    setCoordX(e.nativeEvent.offsetX);
-    setCoordY(e.nativeEvent.offsetY);
-  }
 
   return (
     <Container>
@@ -213,23 +154,7 @@ export default function NewsletterForm({ status, message, onValidated }) {
           className="email-input"
           onKeyUp={(event) => handleInputKeyEvent(event)}
         />
-        <CustomButton
-          ref={buttonRef}
-          type="button"
-          className="button"
-          onClick={handleFormSubmit}
-          onMouseMove={(e) => handleMouseMove(e)}
-        >
-          <BgDiv
-            coordX={
-              buttonRef.current ? Math.floor((coordX / buttonRef.current.clientWidth) * 100) : 0
-            }
-            coordY={
-              buttonRef.current ? Math.floor((coordY / buttonRef.current.clientHeight) * 100) : 0
-            }
-          />
-          <span>Faça parte</span>
-        </CustomButton>
+        <CustomBtn handleClick={() => handleFormSubmit()} text="Faça Parte" theme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
         <div className="info">
           {status === 'sending' && <div>Sending...</div>}
           {status === 'error' || error ? (

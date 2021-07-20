@@ -22,7 +22,7 @@ const Container = styled.div`
   }
 
   .form-container{
-    height: 100%;
+    height: 80%;
   }
 
   .media-container{
