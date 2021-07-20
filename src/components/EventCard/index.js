@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 
 const Container = styled.div`
-  background: linear-gradient( rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6) ), url('/home-cover.jpg');
+  background: linear-gradient( rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6) ), url(${(props) => props.bgImg});
   background-position: center;
   background-size: cover;
   box-shadow:
@@ -43,7 +43,7 @@ const Container = styled.div`
     justify-content: center;
     color: white;
     font-weight: bolder;
-    color: ${({ theme }) => theme.colors.tertiary};
+    color: ${(props) => props.colors.primary};
     pointer-events: none;
   }
 
@@ -58,15 +58,15 @@ const Container = styled.div`
       width: 200px;
       height: 60px;
       border-radius: 25px;
-      background: ${({ theme }) => theme.colors.tertiary};
+      background: ${(props) => props.colors.primary};
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0px 4px 4px ${({ theme }) => theme.colors.tertiary};
+      box-shadow: 0px 4px 4px ${(props) => props.colors.primary};
       font-size: 25px;
       font-weight: bolder;
       pointer-events: all;
-      color: white;
+      color: ${(props) => props.colors.secondary};
       text-decoration: none;
       transition: 0.3s;
       :hover {
@@ -104,12 +104,12 @@ const Mes = styled.span.attrs(
   padding: 0;
   margin: -5px 0 5px 0;
   color: transparent;
-  -webkit-text-stroke: 0.1px ${({ theme }) => theme.colors.tertiary};
+  -webkit-text-stroke: 0.1px ${(props) => props.colors.primary};
   transition: all 0.8s cubic-bezier(.165,.84,.44,1);
 `;
 
 export default function SincCourseAd({
-  img, dia, mes, ano,
+  img, dia, mes, ano, theme, backgroundImg,
 }) {
   const ref = useRef(null);
 
@@ -125,6 +125,8 @@ export default function SincCourseAd({
 
   return (
     <Container
+      bgImg={backgroundImg}
+      colors={theme}
       onMouseMove={(e) => { handleMouseMove(e); }}
       ref={ref}
     >
@@ -133,13 +135,13 @@ export default function SincCourseAd({
       </div>
       <div className="course-date">
         <DiaAno
-          className="dia"
+          colors={theme}
           coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
         >
           {dia}
         </DiaAno>
         <Mes
-          className="mes"
+          colors={theme}
           coordXM={
             ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) * 1.5 : 0
           }
@@ -147,7 +149,7 @@ export default function SincCourseAd({
           {mes.slice(0, 3)}
         </Mes>
         <DiaAno
-          className="ano"
+          theme={theme}
           coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
         >
           {ano}

@@ -59,7 +59,7 @@ export default function Calendario() {
           </h2>
         </div>
       </Cover>
-      <EventCard img="/event-banner.png" dia={12} mes="agosto" ano={2022} />
+      <EventCard img="/event-title.png" backgroundImg="/event-banner.png" theme={{ primary: '#A37D05', secondary: '#47453c', bg: '#F6C60C' }} dia={12} mes="agosto" ano={2022} />
     </Container>
   );
 }
