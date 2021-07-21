@@ -76,6 +76,7 @@ export async function getStaticProps() {
   })
     .then((response) => response.json())
     .then((response) => response)
+    // eslint-disable-next-line no-console
     .catch((err) => console.log(err));
 
   if (nextEvents) {
@@ -88,6 +89,7 @@ export async function getStaticProps() {
     props: {
       nextEvents,
     },
+    revalidate: 3600,
   };
 }
 

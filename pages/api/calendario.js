@@ -1,7 +1,7 @@
 const futureEvents = [
   {
     img: '/event-title.png',
-    name: 'Cash & Flow',
+    name: 'Cash-&-Flow',
     href: '/',
     backgroundImg: '/event-banner.png',
     theme: {
@@ -15,7 +15,7 @@ const futureEvents = [
   },
   {
     img: '/event-title.jpg',
-    name: 'Contamina DejaVu Djonga',
+    name: 'Contamina-DejaVu-Djonga',
     href: '/',
     backgroundImg: '/event-banner.jpg',
     theme: {
@@ -36,7 +36,7 @@ export async function getEvents() {
   });
 }
 
-export default async function (req, res) {
+export default async function Handler(req, res) {
   let data = [];
 
   await getEvents()
@@ -44,6 +44,7 @@ export default async function (req, res) {
       data = results;
     })
     .catch((err) => {
+      // eslint-disable-next-line no-console
       console.log(`Promise rejection error: ${err}`);
     });
   res.status(200).json([

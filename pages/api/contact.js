@@ -2,7 +2,7 @@ import nodemailer from 'nodemailer';
 import dotenv from 'dotenv';
 
 // eslint-disable-next-line func-names
-export default async function (req, res) {
+export default async function Handler(req, res) {
   dotenv.config();
   const transporter = nodemailer.createTransport({
     port: 465,
