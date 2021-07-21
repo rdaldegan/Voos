@@ -88,13 +88,15 @@ export async function getStaticProps() {
   return {
     props: {
       nextEvents,
-      url,
     },
     revalidate: 3600,
   };
 }
 
-export default function Calendario({ nextEvents, url }) {
+export default function Calendario({ nextEvents }) {
+  const base = process.env.API_BASE_URL;
+
+  const url = new URL('/api/calendario', base);
   console.log(url);
   const {
     setTransitionTo,
