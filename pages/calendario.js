@@ -99,8 +99,6 @@ export default function Calendario({ nextEvents }) {
     setTransitionOpen,
   } = useTransition();
 
-  console.log(nextEvents);
-
   useEffect(() => {
     setTransitionOpen(true);
     setTransitionTo('header');
