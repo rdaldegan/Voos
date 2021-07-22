@@ -40,7 +40,7 @@ const Cover = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* color: ${(props) => props.eventTheme.secondary}; */
+    color: ${({ theme }) => theme.colors.secondary};
     h1{
       text-align: center;
       text-justify: inter-character;
