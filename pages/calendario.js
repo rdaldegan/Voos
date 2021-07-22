@@ -65,7 +65,8 @@ export async function getStaticProps() {
   };
 }
 
-export default function Calendario() {
+export default function Calendario({ nextEvents }) {
+  console.log(nextEvents);
   const {
     setTransitionTo,
     setTransitionOpen,
