@@ -118,11 +118,11 @@ export default function Calendario({ nextEvents }) {
       </div>
       {nextEvents.length > 0 && nextEvents.map((event) => (
         <EventCard
-          key={event.name}
-          img={event.img}
-          name={event.name}
-          href={event.href}
-          backgroundImg={event.backgroundImg}
+          key={event.eventName}
+          img={event.logoImg}
+          name={event.eventName}
+          href={event.eventPageHref}
+          backgroundImg={event.coverImg}
           theme={event.eventTheme}
           dia={event.eventDate.dia}
           mes={event.eventDate.mes}
