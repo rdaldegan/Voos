@@ -93,7 +93,6 @@ export async function getStaticProps() {
 }
 
 export default function Calendario({ nextEvents }) {
-  console.log(process.env.API_BASE_URL);
   const {
     setTransitionTo,
     setTransitionOpen,
