@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
-
 import EventCard from '../src/components/EventCard';
+import MailChimpForm from '../src/components/MailchimpForm';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -13,6 +13,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   
   .header{
     background-image: url('/brush-stroke-banner-6.svg');
@@ -87,12 +88,11 @@ export async function getStaticProps() {
     props: {
       nextEvents,
     },
-    /* revalidate: 60, */
+    revalidate: 60,
   };
 }
 
 export default function Calendario({ nextEvents }) {
-  console.log(nextEvents);
   const {
     setTransitionTo,
     setTransitionOpen,
@@ -123,12 +123,21 @@ export default function Calendario({ nextEvents }) {
           name={event.name}
           href={event.href}
           backgroundImg={event.backgroundImg}
-          theme={event.theme}
-          dia={event.dia}
-          mes={event.mes}
-          ano={event.ano}
+          theme={event.eventDate.theme}
+          dia={event.eventDate.dia}
+          mes={event.eventDate.mes}
+          ano={event.eventDate.ano}
         />
       ))}
+
+      {nextEvents.length === 0 && (
+        <div className="no-events">
+          <h3 className="warning">
+            Estamos dando um intervalo nos trabalhos, mas logo voltaremos com muito mais!
+          </h3>
+          <MailChimpForm />
+        </div>
+      )}
     </Container>
   );
 }
