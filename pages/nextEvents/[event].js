@@ -62,8 +62,8 @@ export async function getStaticPaths() {
       'Content-Type': 'application/json',
     },
   })
-    .then((response) => response.text())
-    .then((response) => JSON.parse(response))
+    .then((response) => response.json())
+    .then((response) => response)
     // eslint-disable-next-line no-console
     .catch((err) => console.log(err));
 
@@ -112,12 +112,12 @@ export async function getStaticProps(context) {
     props: {
       props,
     },
-    /* revalidate: 3600, */
+    revalidate: 3600,
   };
 }
 
 export default function Event({
-  props, setTheme,
+  props, setTheme, theme,
 }) {
   const {
     logoImg,
@@ -169,16 +169,16 @@ export default function Event({
     <>
       <Container
         coverImg={coverImg}
-        eventTheme={eventTheme}
         titleFont={titleFont}
         textFont={textFont}
+        eventTheme={theme}
       >
         {!props.err
         && (
           <>
             <Cover
               coverUrl={coverImg}
-              eventTheme={eventTheme}
+              eventTheme={theme}
               pathUrl="/home-cover-clip-path.svg"
               heigth="80vh"
             >
