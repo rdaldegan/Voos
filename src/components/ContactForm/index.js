@@ -15,13 +15,14 @@ const Container = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 2fr 2fr 2fr 2fr 1fr;
+    color: ${({ theme }) => theme.colors.primary};
 
     input,
     textarea{
       margin: 0px;
       padding: 5px;
       background: none;
-      border: 4px solid #47453c;
+      border: 4px solid ${({ theme }) => theme.colors.primary};
       border-radius: 20px;
       width: 80%;
       font-size: 0.8rem;
@@ -131,7 +132,7 @@ export default function ContactForm({ theme }) {
           <label htmlFor="message">Mensagem</label>
           <textarea rows="5" cols="60" name="Meesage" onChange={(e) => { setMessage(e.target.value); }} value={message} />
         </div>
-        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" theme={{ textColor: theme.colors.bg, btnBg: theme.colors.primary, effectBg: theme.colors.secondary }} />
+        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" theme={{ textColor: theme.colors.secondary, btnBg: theme.colors.primary, effectBg: theme.colors.bg }} />
         <div className="feedback">
           {feedback && <span>{feedback}</span>}
         </div>

@@ -28,7 +28,7 @@ const Container = styled.div`
   .media-container{
     height: 65%;
     .mediaBg {
-      background: #F6C60C;
+      background: #F6C60C40;
       border-radius: 25px;
       padding: 20px;
       width: 100%;
