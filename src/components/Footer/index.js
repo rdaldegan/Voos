@@ -47,11 +47,9 @@ const Container = styled.div`
     height: 85%;
     .logo {
       height: 80%;
-    }
-  }
-  svg{
-    path, polygon {
-      fill: ${({ theme }) => theme.colors.primary};
+      path, polygon {
+        fill: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 `;
