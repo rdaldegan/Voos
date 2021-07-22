@@ -11,7 +11,6 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   
   .header{
     background-image: url('/brush-stroke-banner-6.svg');
