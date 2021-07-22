@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from 'next/router';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 import Head from 'next/head';
@@ -11,11 +11,12 @@ import Transition from '../src/components/Transition';
 import Header from '../src/components/Header';
 import Footer from '../src/components/Footer';
 
-const theme = {
+const initialTheme = {
   colors: {
-    primary: '#F6C60C',
-    secondary: '#47453c',
+    primary: '#47453c',
+    secondary: '#F6C60C',
     tertiary: '#A37D05',
+    bg: '#FFFFFF',
   },
 };
 
@@ -28,7 +29,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #FFFFFF;
   }
   #nprogress .bar {
-    background: ${theme.colors.secondary} !important;
+    background: ${initialTheme.colors.primary} !important;
   }
 `;
 
@@ -40,6 +41,15 @@ NProgress.configure({
 });
 
 export default function App({ Component, pageProps }) {
+  const [theme, setTheme] = useState({
+    colors: {
+      primary: '#47453c',
+      secondary: '#F6C60C',
+      tertiary: '#A37D05',
+      bg: '#FFFFFF',
+    },
+  });
+
   Router.events.on('routeChangeStart', () => {
     NProgress.start();
   });
@@ -85,9 +95,9 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <TransitionProvider>
           <Header />
-          <Component {...pageProps} />
-          <Transition />
-          <Footer />
+          <Component {...pageProps} theme={theme} setTheme={setTheme} />
+          <Transition theme={theme} />
+          <Footer theme={theme} />
         </TransitionProvider>
       </ThemeProvider>
     </>

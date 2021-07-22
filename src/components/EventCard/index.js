@@ -37,7 +37,8 @@ const Container = styled.div`
     justify-content: space-around;
     pointer-events: none;
     img{
-      height: 80%;
+      max-height: 80%;
+      max-width: 90%;
     }
   }
 
@@ -150,7 +151,7 @@ export default function SincCourseAd({
             ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) * 1.5 : 0
           }
         >
-          {mes.slice(0, 3)}
+          {mes.toLowerCase().slice(0, 3)}
         </Mes>
         <DiaAno
           theme={theme}

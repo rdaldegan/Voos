@@ -44,7 +44,7 @@ const Container = styled.nav`
     font-weight: bolder;
     font-size: 2.5em;
     line-height: 2.5em;
-    color: #57523E;
+    color: ${({ theme }) => theme.colors.primary};
     cursor: pointer;
   }
 `;

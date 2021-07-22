@@ -94,7 +94,6 @@ export async function getStaticProps() {
 }
 
 export default function Calendario({ nextEvents }) {
-  console.log(process.env.API_BASE_URL);
   const {
     setTransitionTo,
     setTransitionOpen,
@@ -118,17 +117,24 @@ export default function Calendario({ nextEvents }) {
       <div className="header">
         <h2>Próximos eventos:</h2>
       </div>
-      {nextEvents.length > 0 && nextEvents.map((event) => (
+      {nextEvents.length > 0 && nextEvents.map(({
+        eventPageHref,
+        logoImg,
+        eventName,
+        coverImg,
+        eventTheme,
+        eventDate,
+      }) => (
         <EventCard
-          key={event.name}
-          img={event.img}
-          name={event.name}
-          href={event.href}
-          backgroundImg={event.backgroundImg}
-          theme={event.theme}
-          dia={event.dia}
-          mes={event.mes}
-          ano={event.ano}
+          key={eventPageHref}
+          img={logoImg}
+          name={eventName}
+          href={`/nextEvents/${eventPageHref}`}
+          backgroundImg={coverImg}
+          theme={eventTheme}
+          dia={eventDate.dia}
+          mes={eventDate.mes}
+          ano={eventDate.ano}
         />
       ))}
 

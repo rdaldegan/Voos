@@ -1,37 +1,51 @@
-const futureEvents = [
+const futureEventData = [
   {
-    img: '/event-title.png',
-    name: 'Cash-&-Flow',
-    href: '/',
-    backgroundImg: '/event-banner.png',
-    theme: {
+    logoImg: '/event-title.png',
+    eventName: 'Cash & Flow',
+    eventPageHref: 'cash-&-flow',
+    coverImg: '/event-banner.png',
+    eventTheme: {
       primary: '#f70e0e',
       secondary: '#ffffff',
       bg: '#0c0b0a',
     },
-    dia: 12,
-    mes: 'agosto',
-    ano: 2022,
+    eventDate: {
+      dia: 12,
+      mes: 'agosto',
+      ano: 2022,
+    },
+    ticket: {
+      buyLink: '/',
+      price: '3.40',
+      currency: 'BRL',
+    },
   },
   {
-    img: '/event-title.jpg',
-    name: 'Contamina-DejaVu-Djonga',
-    href: '/',
-    backgroundImg: '/event-banner.jpg',
-    theme: {
+    logoImg: '/event-title.jpg',
+    eventName: 'Contamina DejaVu Djonga',
+    eventPageHref: 'contamina-dejavu-djonga',
+    coverImg: '/event-banner.jpg',
+    eventTheme: {
       primary: '#dbab1f',
       secondary: '#ffffff',
       bg: '#43220a',
     },
-    dia: 12,
-    mes: 'agosto',
-    ano: 2022,
+    eventDate: {
+      dia: 14,
+      mes: 'Agosto',
+      ano: 2023,
+    },
+    ticket: {
+      buyLink: '/',
+      price: '3.40',
+      currency: 'BRL',
+    },
   },
 ];
 
 export async function getEvents() {
   return new Promise((resolve, reject) => {
-    if (futureEvents) resolve(futureEvents);
+    if (futureEventData) resolve(futureEventData);
     else reject(new Error('Erro ao buscar os eventos'));
   });
 }

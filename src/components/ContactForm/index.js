@@ -34,8 +34,8 @@ const Container = styled.div`
     input:-webkit-autofill:focus, 
     input:-webkit-autofill:active
     {
-      box-shadow: 0 0 0 30px #F6C60C inset !important;
-      -webkit-box-shadow: 0 0 0 30px #F6C60C inset !important;
+      box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.secondary} inset !important;
+      -webkit-box-shadow: 0 0 0 30px ${({ theme }) => theme.colors.secondary} inset !important;
     }
 
     .name,
@@ -70,7 +70,7 @@ const Container = styled.div`
   }
 `;
 
-export default function ContactForm() {
+export default function ContactForm({ theme }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -131,7 +131,7 @@ export default function ContactForm() {
           <label htmlFor="message">Mensagem</label>
           <textarea rows="5" cols="60" name="Meesage" onChange={(e) => { setMessage(e.target.value); }} value={message} />
         </div>
-        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" theme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
+        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" theme={{ textColor: theme.colors.bg, btnBg: theme.colors.primary, effectBg: theme.colors.secondary }} />
         <div className="feedback">
           {feedback && <span>{feedback}</span>}
         </div>
