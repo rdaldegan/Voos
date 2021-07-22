@@ -88,7 +88,7 @@ export async function getStaticProps() {
     props: {
       nextEvents,
     },
-    revalidate: 1,
+    revalidate: 60,
   };
 }
 
