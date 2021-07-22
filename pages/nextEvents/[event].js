@@ -10,7 +10,7 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: ${(props) => `${props.eventTheme.bg}`};
+  /* background: ${(props) => `${props.eventTheme.bg}`}; */
 `;
 
 const Cover = styled.div`
@@ -40,7 +40,7 @@ const Cover = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${(props) => props.eventTheme.secondary};
+    /* color: ${(props) => props.eventTheme.secondary}; */
     h1{
       text-align: center;
       text-justify: inter-character;
