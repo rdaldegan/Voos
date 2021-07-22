@@ -3,6 +3,8 @@ import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
 
+import EventCard from '../src/components/EventCard';
+
 const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
@@ -114,6 +116,19 @@ export default function Calendario({ nextEvents }) {
       <div className="header">
         <h2>Próximos eventos:</h2>
       </div>
+      {nextEvents.length > 0 && nextEvents.map((event) => (
+        <EventCard
+          key={event.name}
+          img={event.img}
+          name={event.name}
+          href={event.href}
+          backgroundImg={event.backgroundImg}
+          theme={event.theme}
+          dia={event.dia}
+          mes={event.mes}
+          ano={event.ano}
+        />
+      ))}
     </Container>
   );
 }
