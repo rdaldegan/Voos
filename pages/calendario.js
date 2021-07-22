@@ -121,7 +121,7 @@ export default function Calendario({ nextEvents }) {
           key={event.eventName}
           img={event.logoImg}
           name={event.eventName}
-          href={event.eventPageHref}
+          href={`/nextEvents/${event.eventPageHref}`}
           backgroundImg={event.coverImg}
           theme={event.eventTheme}
           dia={event.eventDate.dia}
