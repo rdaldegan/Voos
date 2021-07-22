@@ -49,6 +49,11 @@ const Container = styled.div`
       height: 80%;
     }
   }
+  svg{
+    path, polygon {
+      fill: ${({ theme }) => theme.colors.primary};
+    }
+  }
 `;
 
 const SVG = styled.svg`
