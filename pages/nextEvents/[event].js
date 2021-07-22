@@ -60,6 +60,7 @@ export async function getStaticPaths() {
     headers: {
       Accept: 'application/json, text/plain, */*',
       'Content-Type': 'application/json',
+      'User-Agent': 'ANYTHING_WILL_WORK_HERE',
     },
   })
     .then((response) => response.json())
