@@ -99,7 +99,7 @@ const Mes = styled.span.attrs(
   transition: all 0.8s cubic-bezier(.165,.84,.44,1);
 `;
 
-export default function SincCourseAd({
+export default function EventCard({
   img, name, dia, mes, ano, theme, backgroundImg, href,
 }) {
   const router = useRouter();
