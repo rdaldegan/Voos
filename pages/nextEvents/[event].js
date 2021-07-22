@@ -165,6 +165,8 @@ export default function Event({
     };
   }, []);
 
+  console.log(eventTheme);
+
   return (
     <>
       <Container
