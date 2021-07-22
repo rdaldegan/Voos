@@ -117,7 +117,7 @@ export async function getStaticProps(context) {
 }
 
 export default function Event({
-  props, setTheme, theme,
+  props, setTheme,
 }) {
   const {
     logoImg,
@@ -169,16 +169,16 @@ export default function Event({
     <>
       <Container
         coverImg={coverImg}
+        eventTheme={eventTheme}
         titleFont={titleFont}
         textFont={textFont}
-        eventTheme={theme}
       >
         {!props.err
         && (
           <>
             <Cover
               coverUrl={coverImg}
-              eventTheme={theme}
+              eventTheme={eventTheme}
               pathUrl="/home-cover-clip-path.svg"
               heigth="80vh"
             >
