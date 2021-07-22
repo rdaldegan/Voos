@@ -165,13 +165,10 @@ export default function Event({
     };
   }, []);
 
-  console.log(eventTheme);
-
   return (
     <>
       <Container
         coverImg={coverImg}
-        eventTheme={eventTheme}
         titleFont={titleFont}
         textFont={textFont}
       >
@@ -180,7 +177,6 @@ export default function Event({
           <>
             <Cover
               coverUrl={coverImg}
-              eventTheme={eventTheme}
               pathUrl="/home-cover-clip-path.svg"
               heigth="80vh"
             >
