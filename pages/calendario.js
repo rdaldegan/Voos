@@ -64,10 +64,10 @@ const Cover = styled.div`
 `;
 
 export async function getStaticProps() {
-  const base = process.env.API_BASE_URL;
+  /* const base = process.env.API_BASE_URL;
 
-  const url = new URL('/api/calendario', base);
-  let nextEvents = await fetch(url, {
+  const url = new URL('/api/calendario', base); */
+  let nextEvents = await fetch('https://voos.vercel.app/api/calendario', {
     method: 'POST',
     headers: {
       Accept: 'application/json, text/plain, */*',
