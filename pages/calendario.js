@@ -30,7 +30,6 @@ const Container = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     .warning{
       font-size: 2rem;
       width: 80%;
@@ -117,24 +116,17 @@ export default function Calendario({ nextEvents }) {
       <div className="header">
         <h2>Próximos eventos:</h2>
       </div>
-      {nextEvents.length > 0 && nextEvents.map(({
-        eventPageHref,
-        logoImg,
-        eventName,
-        coverImg,
-        eventTheme,
-        eventDate,
-      }) => (
+      {nextEvents.length > 0 && nextEvents.map((event) => (
         <EventCard
-          key={eventPageHref}
-          img={logoImg}
-          name={eventName}
-          href={`/nextEvents/${eventPageHref}`}
-          backgroundImg={coverImg}
-          theme={eventTheme}
-          dia={eventDate.dia}
-          mes={eventDate.mes}
-          ano={eventDate.ano}
+          key={event.name}
+          img={event.img}
+          name={event.name}
+          href={event.href}
+          backgroundImg={event.backgroundImg}
+          theme={event.theme}
+          dia={event.dia}
+          mes={event.mes}
+          ano={event.ano}
         />
       ))}
 
