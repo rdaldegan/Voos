@@ -111,6 +111,9 @@ export default function Calendario({ nextEvents }) {
           </h2>
         </div>
       </Cover>
+      <div className="header">
+        <h2>Próximos eventos:</h2>
+      </div>
     </Container>
   );
 }
