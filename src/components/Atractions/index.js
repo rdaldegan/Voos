@@ -2,6 +2,14 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
+  @import url(${(props) => props.titleFontImport});
+  @import url(${(props) => props.textFontImport});
+
+  h1,h2,h3,h4,h5{
+    text-align: center;
+    font-family: ${(props) => props.titleFontFamily};
+  }
+  font-family: ${(props) => props.textFontFamily};
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -105,7 +113,7 @@ export default function Atractions({
 
   return (
     <Container>
-      {atractions.map(({ atractionName, atractionPhoto/* , atractionAbout */ }, index) => {
+      {atractions.map(({ atractionName, atractionPhoto, atractionAbout }, index) => {
         const offset = index - currentItem;
         const zIndex = totalItems - Math.abs(offset);
         const opacity = (zIndex) / totalItems;

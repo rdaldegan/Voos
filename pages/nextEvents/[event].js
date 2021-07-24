@@ -203,7 +203,7 @@ export default function Event({
     textFont,
     pageMainText,
     atractions,
-    /* eventPhotos, */
+    eventPhotos,
     eventTheme,
     eventDate,
     ticket,
@@ -243,10 +243,10 @@ export default function Event({
     <>
       <Container
         coverImg={coverImg}
-        titleFontImport={titleFont.import}
-        titleFontFamily={titleFont.fontFamily}
-        textFontImport={textFont.import}
-        textFontFamily={textFont.fontFamily}
+        titleFontImport={titleFont && titleFont.import}
+        titleFontFamily={titleFont && titleFont.fontFamily}
+        textFontImport={titleFont && textFont.import}
+        textFontFamily={titleFont && textFont.fontFamily}
       >
         {!props.err
         && (
