@@ -25,7 +25,8 @@ const futureEventData = [
     atractions: [
       {
         atractionName: 'Costa Gold',
-        atractionPhoto: '/about.jpg',
+        atractionCover: '/costa-gold-cover.jpg',
+        atractionLogo: '/costa-gold-logo.jpg',
         atractionAbout: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
         aliquet ante at nibh porttitor, sit amet lacinia risus 
@@ -33,7 +34,8 @@ const futureEventData = [
       },
       {
         atractionName: 'Costa Gold',
-        atractionPhoto: '/about2.jpg',
+        atractionCover: '/costa-gold-cover.jpg',
+        atractionLogo: '/costa-gold-logo.jpg',
         atractionAbout: `Cras fringilla lacinia tempor. Donec imperdiet 
         nisi et placerat iaculis. Maecenas blandit orci vitae 
         nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
@@ -87,7 +89,8 @@ const futureEventData = [
     atractions: [
       {
         atractionName: 'Costa Gold',
-        atractionPhoto: '/about.jpg',
+        atractionCover: '/costa-gold-cover.jpg',
+        atractionLogo: '/costa-gold-logo.jpg',
         atractionAbout: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
               Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
               aliquet ante at nibh porttitor, sit amet lacinia risus 

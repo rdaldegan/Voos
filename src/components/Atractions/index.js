@@ -2,14 +2,6 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  @import url(${(props) => props.titleFontImport});
-  @import url(${(props) => props.textFontImport});
-
-  h1,h2,h3,h4,h5{
-    text-align: center;
-    font-family: ${(props) => props.titleFontFamily};
-  }
-  font-family: ${(props) => props.textFontFamily};
   overflow: hidden;
   position: relative;
   width: 100%;
@@ -37,18 +29,19 @@ const Citacao = styled.div.attrs(
     translateX,
     opacity,
     zIndex,
-    pointerEvents,
     eventTheme,
   }) => ({
     style: {
       transform: `translateX(${translateX})`,
       opacity: `${opacity}`,
       zIndex: `${zIndex}`,
-      pointerEvents: `${pointerEvents}`,
       background: `linear-gradient(${eventTheme.primary}50, ${eventTheme.bg})`,
     },
   }),
 )`
+
+  @import url(${(props) => props.titleFontImport});
+  @import url(${(props) => props.textFontImport});
   position: relative;
   width: 60%;
   height: 100%; 
@@ -56,7 +49,6 @@ const Citacao = styled.div.attrs(
   grid-area: 1 / -1;
   transition: 2s;
 
-  .info,
   .image{
     position: absolute;
     width: 100%;
@@ -65,25 +57,52 @@ const Citacao = styled.div.attrs(
     left: 0;
   }
   .image{
-    background-image: url(${(props) => props.backgroundPhoto});
+    background-image: url(${(props) => props.backgroundCover});
     background-repeat: no-repeat;
     background-position: center;
-    background-size: 100%;
-    clip-path: polygon(51% 0, 100% 0, 100% 100%, 0 100%, 0 0);
+    background-size: 100% 100%;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 0 0);
     transition: clip-path 0.4s;
   }
-  .name{
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 2rem;
+  .atraction-logo{
+    height: 70%;
     margin: 10px;
-    color: ${(props) => `${props.eventTheme.primary}`}
+    color: ${(props) => `${props.eventTheme.secondary}`}
+  }
+
+  .atraction-info{
+    position: absolute;
+    width: 100%;
+    height: 25%;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: ${(props) => `${props.eventTheme.secondary}`};
+    .about{
+      margin: 0 20px;
+      font-size: 2rem;  
+      font-family: ${(props) => props.textFontFamily};
+    }
+  }
+
+  .big-span{
+    pointer-events: none;
+    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: ${(props) => `${props.eventTheme.secondary}40`};
+    font-size: 30vw;
+    font-family: ${(props) => props.titleFontFamily};
+    mix-blend-mode: screen;
   }
 
   :hover{
     .image{
-      clip-path: polygon(51% 0, 100% 0, 100% 55%, 0 75%, 0 0);
+      clip-path: polygon(100% 0, 100% 55%, 0 75%, 0 0);
     }
   }
 `;
@@ -99,21 +118,11 @@ export default function Atractions({
 
   const totalItems = atractions.length;
 
-  /*
-  * Jeito de sempre estar no index certo num carrossel
-  * (o +- é apenas para dizer que você pode somar ou subtrair)
-  *
-  * ((((indexAtual +- 1)) % lenght) + length) % length)
-  */
-  function changeItem(jumpSize) {
-    setCurrentItem(
-      (((currentItem + jumpSize) % totalItems) + totalItems) % totalItems,
-    );
-  }
-
   return (
     <Container>
-      {atractions.map(({ atractionName, atractionPhoto, atractionAbout }, index) => {
+      {atractions.map(({
+        atractionName, atractionCover, atractionLogo, atractionAbout,
+      }, index) => {
         const offset = index - currentItem;
         const zIndex = totalItems - Math.abs(offset);
         const opacity = (zIndex) / totalItems;
@@ -124,24 +133,24 @@ export default function Atractions({
             translateX={translateX}
             zIndex={zIndex}
             opacity={(opacity > 0.7 && opacity !== 1) ? 0.7 : opacity}
-            pointerEvents={opacity === 1 ? 'all' : 'none'}
-            backgroundPhoto={atractionPhoto}
+            backgroundCover={atractionCover}
             eventTheme={eventTheme}
             titleFontImport={titleFontImport}
             titleFontFamily={titleFontFamily}
             textFontImport={textFontImport}
             textFontFamily={textFontFamily}
+            onClick={() => setCurrentItem(index)}
           >
-            {/* <div className="info">
+            <div className="atraction-info">
+              <img className="atraction-logo" src={atractionLogo} alt={atractionName} />
               <p className="about">{atractionAbout}</p>
-            </div> */}
-            <img className="name" src={atractionName} alt={atractionName} />
-            <div className="image" />
+            </div>
+            <div className="image">
+              <span className="big-span">{atractionName}</span>
+            </div>
           </Citacao>
         );
       })}
-      <button className="previous" type="button" onClick={() => changeItem(-1)}>{'<'}</button>
-      <button className="next" type="button" onClick={() => changeItem(1)}>{'>'}</button>
     </Container>
   );
 }

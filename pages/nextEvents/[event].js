@@ -203,7 +203,7 @@ export default function Event({
     textFont,
     pageMainText,
     atractions,
-    eventPhotos,
+    /* eventPhotos, */
     eventTheme,
     eventDate,
     ticket,
