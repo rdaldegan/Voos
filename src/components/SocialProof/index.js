@@ -54,7 +54,14 @@ const Container = styled.div`
 
 `;
 
-const Citacao = styled.div`
+const Citacao = styled.div.attrs(
+  ({ translateX, opacity }) => ({
+    style: {
+      transform: `translateX(${translateX})`,
+      opacity: `${opacity}`,
+    },
+  }),
+)`
   position: absolute;
   width: 100%;
   height: 100%;
@@ -63,8 +70,6 @@ const Citacao = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  opacity: ${(props) => props.opacity};
-  transform: translateX(${(props) => props.translateX});
   transition: 2s;
   .text{
     font-size: 2.8rem;
@@ -92,11 +97,7 @@ export default function SocialProof({ data }) {
   useEffect(() => {
     setTimeout(() => {
       if (componentIsMounted.current) {
-        if (currentItem === citacoes.length - 1) {
-          setCurrentItem(0);
-        } else {
-          setCurrentItem(currentItem + 1);
-        }
+        setCurrentItem((currentItem + 1) % citacoes.length);
       }
     }, 4000);
   }, [currentItem]);

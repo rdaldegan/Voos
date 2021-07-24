@@ -5,25 +5,39 @@ const futureEventData = [
     eventPageHref: 'cash-&-flow',
     coverImg: '/event-banner.png',
     pageTitle: 'Tenha o Cash e Viva o Flow',
-    titleFont: '\'Qahiri\', sans-serif',
+    titleFont: {
+      import: 'https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap',
+      fontFamily: "'Otomanopee One', sans-serif",
+    },
+    textFont: {
+      import: 'https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap',
+      fontFamily: "'Source Code Pro', monospace",
+    },
     pageMainText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
-                  aliquet ante at nibh porttitor, sit amet lacinia risus 
-                  porttitor. Cras fringilla lacinia tempor. Donec imperdiet 
-                  nisi et placerat iaculis. Maecenas blandit orci vitae 
-                  nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
-                  rutrum pharetra. Suspendisse potenti. Phasellus mattis 
-                  gravida est in hendrerit. Nullam efficitur purus nisl, 
-                  eu efficitur libero feugiat non. Ut eu eleifend felis.`,
-    textFont: '\'Zen Tokyo Zoo\', cursive',
+    Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
+    aliquet ante at nibh porttitor, sit amet lacinia risus 
+    porttitor. Cras fringilla lacinia tempor. Donec imperdiet 
+    nisi et placerat iaculis. Maecenas blandit orci vitae 
+    nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
+    rutrum pharetra. Suspendisse potenti. Phasellus mattis 
+    gravida est in hendrerit. Nullam efficitur purus nisl, 
+    eu efficitur libero feugiat non. Ut eu eleifend felis.`,
     atractions: [
       {
         atractionName: 'Costa Gold',
         atractionPhoto: '/about.jpg',
         atractionAbout: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-              Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
-              aliquet ante at nibh porttitor, sit amet lacinia risus 
-              porttitor.`,
+        Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
+        aliquet ante at nibh porttitor, sit amet lacinia risus 
+        porttitor.`,
+      },
+      {
+        atractionName: 'Costa Gold',
+        atractionPhoto: '/about2.jpg',
+        atractionAbout: `Cras fringilla lacinia tempor. Donec imperdiet 
+        nisi et placerat iaculis. Maecenas blandit orci vitae 
+        nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
+        rutrum pharetra.`,
       },
     ],
     eventPhotos: [
@@ -53,21 +67,23 @@ const futureEventData = [
     eventPageHref: 'contamina-dejavu-djonga',
     coverImg: '/event-banner.jpg',
     pageTitle: 'Tenha o Cash e Viva o Flow',
-    titleFont: `<link rel="preconnect" href="https://fonts.googleapis.com">
-                <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-                <link href="https://fonts.googleapis.com/css2?family=Qahiri&display=swap" rel="stylesheet">`,
+    titleFont: {
+      import: 'https://fonts.googleapis.com/css2?family=Otomanopee+One&display=swap',
+      fontFamily: "'Otomanopee One', sans-serif",
+    },
+    textFont: {
+      import: 'https://fonts.googleapis.com/css2?family=Anton&display=swap',
+      fontFamily: "'Anton', sans-serif",
+    },
     pageMainText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                  Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
-                  aliquet ante at nibh porttitor, sit amet lacinia risus 
-                  porttitor. Cras fringilla lacinia tempor. Donec imperdiet 
-                  nisi et placerat iaculis. Maecenas blandit orci vitae 
-                  nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
-                  rutrum pharetra. Suspendisse potenti. Phasellus mattis 
-                  gravida est in hendrerit. Nullam efficitur purus nisl, 
-                  eu efficitur libero feugiat non. Ut eu eleifend felis.`,
-    textFont: `<link rel="preconnect" href="https://fonts.googleapis.com">
-              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-              <link href="https://fonts.googleapis.com/css2?family=Zen+Tokyo+Zoo&display=swap" rel="stylesheet">`,
+    Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
+    aliquet ante at nibh porttitor, sit amet lacinia risus 
+    porttitor. Cras fringilla lacinia tempor. Donec imperdiet 
+    nisi et placerat iaculis. Maecenas blandit orci vitae 
+    nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
+    rutrum pharetra. Suspendisse potenti. Phasellus mattis 
+    gravida est in hendrerit. Nullam efficitur purus nisl, 
+    eu efficitur libero feugiat non. Ut eu eleifend felis.`,
     atractions: [
       {
         atractionName: 'Costa Gold',
@@ -86,7 +102,7 @@ const futureEventData = [
       primary: '#dbab1f',
       secondary: '#43220a',
       tertiary: '',
-      bg: '#43220a',
+      bg: '#5b4401',
     },
     eventDate: {
       dia: 14,
@@ -94,7 +110,7 @@ const futureEventData = [
       ano: 2023,
     },
     ticket: {
-      buyLink: '/',
+      buyLink: '',
       price: '3.40',
       currency: 'BRL',
     },

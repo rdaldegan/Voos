@@ -8,10 +8,12 @@
   },
   "dependencies": {
     "animejs": "^3.2.1",
+    "dompurify": "^2.3.0",
     "dotenv": "^10.0.0",
     "framer-motion": "^4.1.17",
     "global": "^4.4.0",
     "html-entities": "^2.3.2",
+    "isomorphic-dompurify": "^0.15.0",
     "next": "latest",
     "nodemailer": "^6.6.3",
     "nprogress": "^0.2.0",

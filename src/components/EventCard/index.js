@@ -28,7 +28,7 @@ const Container = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
 
-  .course-infos{
+  .event-infos{
     height: 100%;
     width: 100%;
     display: flex;
@@ -42,7 +42,7 @@ const Container = styled.div`
     }
   }
 
-  .course-date {
+  .event-date {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -135,10 +135,10 @@ export default function EventCard({
       onMouseMove={(e) => { handleMouseMove(e); }}
       ref={ref}
     >
-      <div className="course-infos">
+      <div className="event-infos">
         <img src={img} alt={`Evento ${name}`} />
       </div>
-      <div className="course-date">
+      <div className="event-date">
         <DiaAno
           colors={theme}
           coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}

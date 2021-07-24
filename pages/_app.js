@@ -49,7 +49,6 @@ export default function App({ Component, pageProps }) {
       bg: '#FFFFFF',
     },
   });
-
   Router.events.on('routeChangeStart', () => {
     NProgress.start();
   });
@@ -95,7 +94,11 @@ export default function App({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <TransitionProvider>
           <Header />
-          <Component {...pageProps} theme={theme} setTheme={setTheme} />
+          <Component
+            {...pageProps}
+            theme={theme}
+            setTheme={setTheme}
+          />
           <Transition theme={theme} />
           <Footer theme={theme} />
         </TransitionProvider>
