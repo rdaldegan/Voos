@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 
 const Container = styled.div`
-  overflow: hidden;
   position: relative;
   width: 100%;
   height: 650px;
-  margin: 70px auto;
+  margin: 70px auto 200px;
   display: grid;
-  
   .previous, .next{
     position: absolute;
     top: 50%;
@@ -47,7 +45,14 @@ const Citacao = styled.div.attrs(
   height: 100%; 
   margin: auto;
   grid-area: 1 / -1;
-  transition: 2s;
+  transition: transform 0.9s;
+  
+  box-shadow:
+    0 2.8px 2.2px ${(props) => `${props.eventTheme.secondary}10`},
+    0 6.7px 5.3px ${(props) => `${props.eventTheme.secondary}15`},
+    0 12.5px 10px ${(props) => `${props.eventTheme.secondary}20`},
+    0 22.3px 17.9px ${(props) => `${props.eventTheme.secondary}25`};
+  
 
   .image{
     position: absolute;
@@ -89,15 +94,21 @@ const Citacao = styled.div.attrs(
 
   .big-span{
     pointer-events: none;
-    height: 100%;
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: ${(props) => `${props.eventTheme.secondary}40`};
-    font-size: 30vw;
+    font-size: 500px;
+    white-space: nowrap;
+    top: 20%;
+    left: -10%;
+    color: ${(props) => `${props.eventTheme.primary}40`};
     font-family: ${(props) => props.titleFontFamily};
     mix-blend-mode: screen;
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
   }
 
   :hover{

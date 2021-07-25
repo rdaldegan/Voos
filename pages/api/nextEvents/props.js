@@ -24,13 +24,22 @@ const futureEventData = [
     eu efficitur libero feugiat non. Ut eu eleifend felis.`,
     atractions: [
       {
-        atractionName: 'Costa Gold',
-        atractionCover: '/costa-gold-cover.jpg',
-        atractionLogo: '/costa-gold-logo.jpg',
+        atractionName: 'Djonga',
+        atractionCover: '/djonga-cover.jpg',
+        atractionLogo: '/djonga-logo.jpg',
         atractionAbout: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
         Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
         aliquet ante at nibh porttitor, sit amet lacinia risus 
         porttitor.`,
+      },
+      {
+        atractionName: 'Costa Gold',
+        atractionCover: '/costa-gold-cover.jpg',
+        atractionLogo: '/costa-gold-logo.jpg',
+        atractionAbout: `Cras fringilla lacinia tempor. Donec imperdiet 
+        nisi et placerat iaculis. Maecenas blandit orci vitae 
+        nisl maximus, at rhoncus nibh fermentum. Sed pharetra 
+        rutrum pharetra.`,
       },
       {
         atractionName: 'Costa Gold',
