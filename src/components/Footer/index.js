@@ -11,8 +11,7 @@ const Container = styled.div`
   width: 100%;
 
   .content{
-    position: absolute;
-    bottom: 0;
+    position: relative;
     height: 500px;
     display: flex;
     flex-direction: row;
