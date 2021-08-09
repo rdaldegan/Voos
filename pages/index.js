@@ -36,12 +36,16 @@ export default function Home() {
     setTransitionOpen,
   } = useTransition();
 
-  function handleClick(path) {
-    setTransitionOpen(false);
-    setTransitionTo('index');
-    setTimeout(() => {
-      router.push(path);
-    }, 1300);
+  function handleClick(e, path) {
+    if (e.button === 1 || (e.button === 0 && e.ctrlKey === true)) {
+      window.open('/home');
+    } else if (e.button === 0) {
+      setTransitionOpen(false);
+      setTransitionTo('index');
+      setTimeout(() => {
+        router.push(path);
+      }, 1300);
+    }
   }
 
   useEffect(() => {
@@ -54,7 +58,7 @@ export default function Home() {
       <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
-        <CustomBtn handleClick={() => handleClick('/home')} text="FAÇA PARTE" theme={{ textColor: '#47453c', btnBg: '#F6C60C', effectBg: '#A37D05' }} />
+        <CustomBtn handleClick={(e) => handleClick(e, '/home')} text="FAÇA PARTE" theme={{ textColor: '#47453c', btnBg: '#F6C60C', effectBg: '#A37D05' }} />
       </Title>
     </Container>
   );

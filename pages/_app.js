@@ -28,6 +28,9 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     background-color: #FFFFFF;
   }
+  h1, h2, h3, h4, h5{
+    text-align: center;
+  }
   #nprogress .bar {
     background: ${initialTheme.colors.primary} !important;
   }

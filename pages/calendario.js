@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { useTransition } from '../src/context/transitionContext';
 import EventCard from '../src/components/EventCard';
-import MailChimpForm from '../src/components/MailchimpForm';
+import MailchimpForm from '../src/components/MailchimpForm';
 
 const Container = styled.div`
   min-height: 100vh;
@@ -92,13 +92,43 @@ export async function getStaticProps() {
   };
 }
 
+const meses = [
+  'janeiro',
+  'fevereiro',
+  'março',
+  'abril',
+  'maio',
+  'junho',
+  'julho',
+  'agosto',
+  'setembro',
+  'outubro',
+  'novembro',
+  'dezembro',
+];
+
 export default function Calendario({ nextEvents }) {
   const {
     setTransitionTo,
     setTransitionOpen,
   } = useTransition();
 
+  function compareDates(event1, event2) {
+    const date1 = event1.eventDate;
+    const ano1 = 366 * date1.ano;
+    const mes1 = 31 * meses.indexOf(date1.mes.toLowerCase()) + 1;
+    const totalDate1 = ano1 + mes1 + date1.dia;
+
+    const date2 = event2.eventDate;
+    const ano2 = 366 * date2.ano;
+    const mes2 = 31 * meses.indexOf(date2.mes.toLowerCase()) + 1;
+    const totalDate2 = ano2 + mes2 + date2.dia;
+
+    return totalDate1 - totalDate2;
+  }
+
   useEffect(() => {
+    nextEvents.sort(compareDates);
     setTransitionOpen(true);
     setTransitionTo('header');
   }, []);
@@ -135,7 +165,7 @@ export default function Calendario({ nextEvents }) {
           <h3 className="warning">
             Estamos dando um intervalo nos trabalhos, mas logo voltaremos com muito mais!
           </h3>
-          <MailChimpForm />
+          <MailchimpForm />
         </div>
       )}
     </Container>

@@ -1,4 +1,4 @@
-const futureEventData = [
+const pastEvents = [
   {
     logoImg: '/event-title.png',
     eventName: 'Cash & Flow',
@@ -6,9 +6,6 @@ const futureEventData = [
     coverImg: '/event-banner.png',
     coverImg2: '/event-banner.png',
     pageTitle: 'Tenha o Cash e Viva o Flow',
-    eventCallText: `Cras fringilla lacinia tempor. Donec imperdiet 
-    nisi et placerat iaculis. Maecenas blandit orci vitae 
-    nisl maximus, at rhoncus nibh fermentum.`,
     pageMainText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
     aliquet ante at nibh porttitor, sit amet lacinia risus 
@@ -67,16 +64,6 @@ const futureEventData = [
       tertiary: '',
       bg: '#0c0b0a',
     },
-    eventDate: {
-      dia: 12,
-      mes: 'agosto',
-      ano: 2022,
-    },
-    ticket: {
-      buyLink: '/',
-      price: '3.40',
-      currency: 'BRL',
-    },
   },
   {
     logoImg: '/event-title.jpg',
@@ -85,9 +72,6 @@ const futureEventData = [
     coverImg: '/event-banner.jpg',
     coverImg2: '/event-banner.png',
     pageTitle: 'Tenha o Cash e Viva o Flow',
-    eventCallText: `Cras fringilla lacinia tempor. Donec imperdiet 
-    nisi et placerat iaculis. Maecenas blandit orci vitae 
-    nisl maximus, at rhoncus nibh fermentum.`,
     pageMainText: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
     Aliquam nec hendrerit odio. Nunc id aliquet enim. Fusce 
     aliquet ante at nibh porttitor, sit amet lacinia risus 
@@ -128,23 +112,13 @@ const futureEventData = [
       tertiary: '',
       bg: '#5b4401',
     },
-    eventDate: {
-      dia: 14,
-      mes: 'Agosto',
-      ano: 2023,
-    },
-    ticket: {
-      buyLink: '',
-      price: '3.40',
-      currency: 'BRL',
-    },
   },
 ];
 
 export async function getProps({ event }) {
   return new Promise((resolve, reject) => {
-    if (futureEventData) {
-      const found = futureEventData.find(
+    if (pastEvents) {
+      const found = pastEvents.find(
         (current) => current.eventPageHref.toUpperCase() === event.toUpperCase(),
       );
       if (found) resolve(found);

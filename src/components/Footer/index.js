@@ -70,7 +70,7 @@ export default function Footer({ theme }) {
   const router = useRouter();
 
   let background = '#FFFFFF';
-  if (router.pathname.includes('/nextEvents')) {
+  if (router.pathname.includes('/nextEvents') || router.pathname.includes('/events')) {
     background = theme.colors.bg;
   }
   return (

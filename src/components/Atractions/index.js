@@ -4,33 +4,21 @@ import styled from 'styled-components';
 const Container = styled.div`
   position: relative;
   width: 100%;
-  height: 650px;
+  height: calc(100vw / 2.5);
   margin: 70px auto 200px;
   display: grid;
-  .previous, .next{
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: darkgray;
-    z-index: 100;
-  }
-  .previousu{
-    left: 0;
-  }
-  .next{
-    right: 0;
-  }
 `;
 
 const Citacao = styled.div.attrs(
   ({
     translateX,
+    translateY,
     opacity,
     zIndex,
     eventTheme,
   }) => ({
     style: {
-      transform: `translateX(${translateX})`,
+      transform: `translateX(${translateX}) translateY(${translateY})`,
       opacity: `${opacity}`,
       zIndex: `${zIndex}`,
       background: `linear-gradient(${eventTheme.primary}50, ${eventTheme.bg})`,
@@ -38,8 +26,6 @@ const Citacao = styled.div.attrs(
   }),
 )`
 
-  @import url(${(props) => props.titleFontImport});
-  @import url(${(props) => props.textFontImport});
   position: relative;
   width: 60%;
   height: 100%; 
@@ -100,15 +86,13 @@ const Citacao = styled.div.attrs(
     top: 20%;
     left: -10%;
     color: ${(props) => `${props.eventTheme.primary}40`};
-    font-family: ${(props) => props.titleFontFamily};
     mix-blend-mode: screen;
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none; /* Safari */
-     -khtml-user-select: none; /* Konqueror HTML */
-       -moz-user-select: none; /* Old versions of Firefox */
-        -ms-user-select: none; /* Internet Explorer/Edge */
-            user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
   :hover{
@@ -119,9 +103,8 @@ const Citacao = styled.div.attrs(
 `;
 
 export default function Atractions({
-  atractions, eventTheme,
-  titleFontImport,
-  titleFontFamily,
+  atractions,
+  eventTheme,
   textFontImport,
   textFontFamily,
 }) {
@@ -138,16 +121,16 @@ export default function Atractions({
         const zIndex = totalItems - Math.abs(offset);
         const opacity = (zIndex) / totalItems;
         const translateX = `${105 * offset}%`;
+        const translateY = `${-Math.abs(10 * offset)}%`;
         return (
           <Citacao
             key={index}
             translateX={translateX}
+            translateY={translateY}
             zIndex={zIndex}
             opacity={(opacity > 0.7 && opacity !== 1) ? 0.7 : opacity}
             backgroundCover={atractionCover}
             eventTheme={eventTheme}
-            titleFontImport={titleFontImport}
-            titleFontFamily={titleFontFamily}
             textFontImport={textFontImport}
             textFontFamily={textFontFamily}
             onClick={() => setCurrentItem(index)}

@@ -47,10 +47,13 @@ const Container = styled.div`
     }
 
     .header{
-      font-family: 'Carter One', cursive;
       grid-column-start: 1;
       grid-column-end: 3;
-      margin: 0;
+      display: flex;
+      h3{
+        font-family: 'Carter One', cursive;
+        margin: 0;
+      }
     }
     .message{
       grid-column-start: 1;
@@ -79,6 +82,9 @@ export default function ContactForm({ theme }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    if (e.button !== 0 || e.ctrlKey) {
+      return;
+    }
     if (email === '' || name === '' || message === '') {
       setFeedback('Preencha todos os campos');
     } else if (email.indexOf('@') < 0) {
@@ -119,7 +125,9 @@ export default function ContactForm({ theme }) {
   return (
     <Container>
       <form>
-        <h3 className="header">Fale conosco:</h3>
+        <div className="header">
+          <h3>Fale conosco:</h3>
+        </div>
         <div className="name">
           <label htmlFor="name">Nome</label>
           <input type="text" onChange={(e) => { setName(e.target.value); }} value={name} name="name" />

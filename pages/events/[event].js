@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react';
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import DOMPurify from 'isomorphic-dompurify';
 
 import { useTransition } from '../../src/context/transitionContext';
 
-import CustomBtn from '../../src/components/CustomBtn';
 import Atractions from '../../src/components/Atractions';
+import Photos from '../../src/components/Photos';
 /* import PhotoGalerie from '../../src/components/PhotoGalerie'; */
 
 const Container = styled.div`  
@@ -27,8 +26,7 @@ const Container = styled.div`
     grid-gap: 10%;
   
     .event-name,
-    .event-logo,
-    .event-date {
+    .event-logo{
       margin: auto;
       width: 100%;
       height: 80%;
@@ -46,27 +44,6 @@ const Container = styled.div`
       h1{
         color: ${({ theme }) => theme.colors.primary};
         font-size: 4.5rem;
-      }
-    }
-    .event-date{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bolder;
-      color: ${({ theme }) => theme.colors.secondary};
-      pointer-events: none;
-      div{
-        font-size: 4rem; 
-        line-height: 3.8rem;
-        padding: 0;
-        margin: 0;
-      }
-      .mes{
-        margin: -5px 0 5px 0;
-        color: transparent;
-        -webkit-text-stroke: 0.1px ${({ theme }) => theme.colors.secondary};
       }
     }
   }
@@ -103,6 +80,10 @@ const Container = styled.div`
       font-size: 3rem;
       color: ${({ theme }) => theme.colors.secondary};
     }
+  }
+
+  .photos{
+    margin: 0 0 150px 0;
   }
 `;
 
@@ -190,7 +171,6 @@ export async function getStaticProps(context) {
 export default function Event({
   props, setTheme,
 }) {
-  const router = useRouter();
   const {
     logoImg,
     eventName,
@@ -199,10 +179,8 @@ export default function Event({
     pageTitle,
     pageMainText,
     atractions,
-    /* eventPhotos, */
+    eventPhotos,
     eventTheme,
-    eventDate,
-    ticket,
   } = props.data;
 
   const {
@@ -221,18 +199,6 @@ export default function Event({
     setTransitionOpen(true);
     setTransitionTo('header');
   }, []);
-
-  function handleClick(e, path) {
-    if (e.button === 1 || (e.button === 0 && e.ctrlKey === true)) {
-      window.open(path);
-    } else if (e.button === 0) {
-      setTransitionOpen(false);
-      setTransitionTo('index');
-      setTimeout(() => {
-        router.push(path);
-      }, 1300);
-    }
-  }
 
   // eslint-disable-next-line arrow-body-style
   useEffect(() => {
@@ -269,20 +235,6 @@ export default function Event({
                   <h1>{eventName}</h1>
                 </div>
                 )}
-              {(eventDate.dia !== '' && eventDate.mes !== '' && eventDate.ano !== '')
-              && (
-              <div className="event-date">
-                <div>
-                  {eventDate.dia}
-                </div>
-                <div className="mes">
-                  {eventDate.mes.toLowerCase()}
-                </div>
-                <div>
-                  {eventDate.ano}
-                </div>
-              </div>
-              )}
             </div>
             <div className="info">
               {pageTitle.length > 0
@@ -290,34 +242,6 @@ export default function Event({
               {pageMainText.length > 0
               // eslint-disable-next-line react/no-danger
               && <div className="main-text" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(pageMainText, { USE_PROFILES: { html: true } }) }} />}
-              {ticket.buyLink.length > 0
-                ? (
-                  <div className="btn-container">
-                    <CustomBtn
-                      handleClick={(e) => handleClick(e, ticket.buyLink)}
-                      text="Garanta aqui o seu ingresso!"
-                      theme={{
-                        textColor: eventTheme.bg,
-                        btnBg: eventTheme.primary,
-                        effectBg: eventTheme.secondary,
-                      }}
-                    />
-                  </div>
-
-                )
-                : (
-                  <div className="btn-container">
-                    <CustomBtn
-                      handleClick={() => {}}
-                      text="Ingressos a venda em breve"
-                      theme={{
-                        textColor: eventTheme.bg,
-                        btnBg: eventTheme.primary,
-                        effectBg: eventTheme.secondary,
-                      }}
-                    />
-                  </div>
-                )}
             </div>
             <Cover coverUrl={coverImg2} pathUrl="/home-cover-clip-path2.svg" heigth="600px" />
             <div className="atractions">
@@ -327,7 +251,9 @@ export default function Event({
                 eventTheme={eventTheme}
               />
             </div>
-            {/* <PhotoGalerie photos={eventPhotos} /> */}
+            <div className="photos">
+              <Photos eventPhotos={eventPhotos} eventTheme={eventTheme} />
+            </div>
           </>
         )}
         {props.err && <h2>404: Infelizmente este evento não foi encontrado</h2>}

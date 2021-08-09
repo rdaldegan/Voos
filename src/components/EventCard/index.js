@@ -119,13 +119,17 @@ export default function EventCard({
     setCoordX(e.nativeEvent.offsetX);
   }
 
-  function handleClick(path) {
-    setTransitionOpen(false);
-    setTransitionTo('index');
-    setTimeout(() => {
-      if (router.pathname === path) router.reload(path);
-      else router.push(path);
-    }, 1300);
+  function handleClick(e, path) {
+    if (e.button === 1 || (e.button === 0 && e.ctrlKey === true)) {
+      window.open(path);
+    } else {
+      setTransitionOpen(false);
+      setTransitionTo('index');
+      setTimeout(() => {
+        if (router.pathname === path) router.reload(path);
+        else router.push(path);
+      }, 1300);
+    }
   }
 
   return (
@@ -161,7 +165,7 @@ export default function EventCard({
         </DiaAno>
       </div>
       <div className="subscrible-link">
-        <CustomBtn handleClick={() => handleClick(href)} text="Saiba Mais" theme={{ textColor: theme.primary, btnBg: theme.bg, effectBg: `${theme.primary}35` }} />
+        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Saiba Mais" theme={{ textColor: theme.primary, btnBg: theme.bg, effectBg: `${theme.primary}35` }} />
       </div>
     </Container>
   );

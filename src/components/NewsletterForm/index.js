@@ -72,7 +72,10 @@ export default function NewsletterForm({ status, message, onValidated }) {
    *
    * @return {{value}|*|boolean|null}
    */
-  function handleFormSubmit() {
+  function handleFormSubmit(e) {
+    if (e.button !== 0 || e.ctrlKey) {
+      return null;
+    }
     setError(null);
 
     if (!email || !name) {
@@ -92,7 +95,7 @@ export default function NewsletterForm({ status, message, onValidated }) {
     setError(null);
     if (event.keyCode === 13) {
       event.preventDefault();
-      handleFormSubmit();
+      handleFormSubmit(event);
     }
   }
 
@@ -154,7 +157,7 @@ export default function NewsletterForm({ status, message, onValidated }) {
           className="email-input"
           onKeyUp={(event) => handleInputKeyEvent(event)}
         />
-        <CustomBtn handleClick={() => handleFormSubmit()} text="Faça Parte" theme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
+        <CustomBtn handleClick={(e) => handleFormSubmit(e)} text="Faça Parte" theme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
         <div className="info">
           {status === 'sending' && <div>Sending...</div>}
           {status === 'error' || error ? (

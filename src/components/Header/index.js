@@ -11,7 +11,7 @@ const Container = styled.nav`
   left: 0;
   z-index: 302;
   width: 60vw;
-  height: 6vh;
+  height: 7.5vh;
   font-size: 62.5%;
   display: flex;
   flex-direction: row;
@@ -76,20 +76,24 @@ export default function Header() {
     setTransitionOpen,
   } = useTransition();
 
-  function handleClick(path) {
-    setTransitionOpen(false);
-    setTransitionTo('index');
-    setTimeout(() => {
-      if (router.pathname === path) router.reload(path);
-      else router.push(path);
-    }, 1300);
+  function handleClick(e, path) {
+    if (e.button === 1 || (e.button === 0 && e.ctrlKey === true)) {
+      window.open(path);
+    } else if (e.button === 0) {
+      setTransitionOpen(false);
+      setTransitionTo('index');
+      setTimeout(() => {
+        if (router.pathname === path) router.reload(path);
+        else router.push(path);
+      }, 1300);
+    }
   }
   return (
     <Container>
       <ul>
         {headerItens.map((item, index) => (
           <li key={index}>
-            <button type="button" onClick={() => handleClick(item.href)}>
+            <button type="button" onMouseDown={(e) => handleClick(e, item.href)}>
               {item.name.toUpperCase()}
             </button>
           </li>
