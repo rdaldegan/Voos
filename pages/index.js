@@ -22,6 +22,7 @@ const Title = styled.div`
   transform: translate(-15%, -65%);
   max-width: 35%;
   h2 {
+    text-align: left;
     border-left: 8px solid #F6C60C;
     padding: 0 20px;
     color: #333333;

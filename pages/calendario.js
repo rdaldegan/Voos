@@ -20,7 +20,7 @@ const Container = styled.div`
     background-size: 100% 100%;
     background-repeat: no-repeat;
     h2{
-      font-family: 'Carter One', cursive;
+      font-family: 'Chau Philomene One', sans-serif;
       color: #47453c;
       font-size: 4.5rem;
     }
@@ -42,7 +42,7 @@ const Cover = styled.div`
   height: ${(props) => props.heigth};
   margin: 0 0 50px 0;
   background-image: url(${(props) => props.coverUrl});
-  background-size: 100% 100%;
+  background-size: cover;
   background-repeat: no-repeat;
   background-position: 100% 25%;
   mask-image: url(${(props) => props.pathUrl});

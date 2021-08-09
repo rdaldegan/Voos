@@ -33,7 +33,7 @@ const Container = styled.div`
       
     }
     h3{
-      font-family: 'Carter One', cursive;
+      font-family: 'Chau Philomene One', sans-serif;
       font-size: 2rem;
     }
     h4 {

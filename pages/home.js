@@ -32,7 +32,7 @@ const Cover = styled.div`
   mask-position: center center;
   mask-size: cover;
   h2 {
-    font-family: 'Otomanopee One', sans-serif;
+    font-family: 'Wendy One', sans-serif;
     position: absolute;
     top: 25%;
     left: 50%;

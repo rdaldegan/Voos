@@ -11,7 +11,7 @@ const CustomButton = styled.button`
   border-radius: 15px;
   font-size: 1.7rem;
   letter-spacing: 1px;
-  font-family: 'Otomanopee One', sans-serif;
+  font-family: 'Chau Philomene One', sans-serif;
   cursor: pointer;
   pointer-events: all;
   overflow: hidden;

@@ -17,7 +17,7 @@ const Container = styled.div`
     background-size: 100% 100%;
     background-repeat: no-repeat;
     h2{
-      font-family: 'Carter One', cursive;
+      font-family: 'Chau Philomene One', sans-serif;
       color: #47453c;
       font-size: 4.5rem;
     }
@@ -41,7 +41,7 @@ const Container = styled.div`
   
       h3{
         margin: 0;
-        font-family: 'Carter One', cursive;
+        font-family: 'Chau Philomene One', sans-serif;
         font-size: 3rem;
       }
     }

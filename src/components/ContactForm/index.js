@@ -51,7 +51,7 @@ const Container = styled.div`
       grid-column-end: 3;
       display: flex;
       h3{
-        font-family: 'Carter One', cursive;
+        font-family: 'Chau Philomene One', sans-serif;
         margin: 0;
       }
     }
