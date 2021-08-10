@@ -17,7 +17,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.bg};
+  background: ${(props) => props.eventTheme.page.bg};
   
   .event-title{
     height: 400px;
@@ -44,7 +44,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       h1{
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${(props) => props.eventTheme.page.mainTitle};
         font-size: 4.5rem;
       }
     }
@@ -55,7 +55,7 @@ const Container = styled.div`
       justify-content: center;
       color: white;
       font-weight: bolder;
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${(props) => props.eventTheme.page.date};
       pointer-events: none;
       div{
         font-size: 4rem; 
@@ -66,7 +66,7 @@ const Container = styled.div`
       .mes{
         margin: -5px 0 5px 0;
         color: transparent;
-        -webkit-text-stroke: 0.1px ${({ theme }) => theme.colors.secondary};
+        -webkit-text-stroke: 0.1px ${(props) => props.eventTheme.page.date};
       }
     }
   }
@@ -77,7 +77,7 @@ const Container = styled.div`
     display: grid;
     grid-template-rows: 2fr 4fr 1fr;
     grid-gap: 50px;
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${(props) => props.eventTheme.page.text};
     margin: 100px 0;
 
     .eventTitle,
@@ -86,7 +86,7 @@ const Container = styled.div`
       margin: auto;
     }
     .eventTitle{
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${(props) => props.eventTheme.page.secondTitle};
       font-size: 3.4rem;
     }
     .main-text{
@@ -101,7 +101,7 @@ const Container = styled.div`
     width: 100%;
     .atractions-header{
       font-size: 3rem;
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${(props) => props.eventTheme.page.thirdTitle};
     }
   }
 `;
@@ -199,7 +199,6 @@ export default function Event({
     pageTitle,
     pageMainText,
     atractions,
-    /* eventPhotos, */
     eventTheme,
     eventDate,
     ticket,
@@ -247,10 +246,12 @@ export default function Event({
       });
     };
   }, []);
+
   return (
     <>
       <Container
         coverImg={coverImg}
+        eventTheme={eventTheme}
       >
         {!props.err
         && (
@@ -296,7 +297,7 @@ export default function Event({
                     <CustomBtn
                       handleClick={(e) => handleClick(e, ticket.buyLink)}
                       text="Garanta aqui o seu ingresso!"
-                      theme={{
+                      btnTheme={{
                         textColor: eventTheme.bg,
                         btnBg: eventTheme.primary,
                         effectBg: eventTheme.secondary,
@@ -310,7 +311,7 @@ export default function Event({
                     <CustomBtn
                       handleClick={() => {}}
                       text="Ingressos a venda em breve"
-                      theme={{
+                      btnTheme={{
                         textColor: eventTheme.bg,
                         btnBg: eventTheme.primary,
                         effectBg: eventTheme.secondary,

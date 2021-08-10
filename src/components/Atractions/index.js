@@ -9,7 +9,7 @@ const Container = styled.div`
   display: grid;
 `;
 
-const Citacao = styled.div.attrs(
+const Atraction = styled.div.attrs(
   ({
     translateX,
     translateY,
@@ -21,7 +21,7 @@ const Citacao = styled.div.attrs(
       transform: `translateX(${translateX}) translateY(${translateY})`,
       opacity: `${opacity}`,
       zIndex: `${zIndex}`,
-      background: `linear-gradient(${eventTheme.primary}50, ${eventTheme.bg})`,
+      background: `linear-gradient(rgba(0, 0, 0, 0), ${eventTheme.page.atractions.bg1}50, ${eventTheme.page.atractions.bg2})`,
     },
   }),
 )`
@@ -34,10 +34,10 @@ const Citacao = styled.div.attrs(
   transition: transform 0.9s;
   
   box-shadow:
-    0 2.8px 2.2px ${(props) => `${props.eventTheme.secondary}10`},
-    0 6.7px 5.3px ${(props) => `${props.eventTheme.secondary}15`},
-    0 12.5px 10px ${(props) => `${props.eventTheme.secondary}20`},
-    0 22.3px 17.9px ${(props) => `${props.eventTheme.secondary}25`};
+    0 2.8px 2.2px ${(props) => `${props.eventTheme.page.atractions.shadow}10`},
+    0 6.7px 5.3px ${(props) => `${props.eventTheme.page.atractions.shadow}15`},
+    0 12.5px 10px ${(props) => `${props.eventTheme.page.atractions.shadow}20`},
+    0 22.3px 17.9px ${(props) => `${props.eventTheme.page.atractions.shadow}25`};
   
 
   .image{
@@ -58,7 +58,6 @@ const Citacao = styled.div.attrs(
   .atraction-logo{
     height: 70%;
     margin: 10px;
-    color: ${(props) => `${props.eventTheme.secondary}`}
   }
 
   .atraction-info{
@@ -70,7 +69,7 @@ const Citacao = styled.div.attrs(
     display: flex;
     align-items: center;
     justify-content: center;
-    color: ${(props) => `${props.eventTheme.secondary}`};
+    color: ${(props) => `${props.eventTheme.page.atractions.text}`};
     .about{
       margin: 0 20px;
       font-size: 2rem;  
@@ -85,7 +84,7 @@ const Citacao = styled.div.attrs(
     white-space: nowrap;
     top: 20%;
     left: -10%;
-    color: ${(props) => `${props.eventTheme.primary}40`};
+    color: ${(props) => `${props.eventTheme.page.atractions.waterMarkText}40`};
     mix-blend-mode: screen;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -123,7 +122,7 @@ export default function Atractions({
         const translateX = `${105 * offset}%`;
         const translateY = `${-Math.abs(10 * offset)}%`;
         return (
-          <Citacao
+          <Atraction
             key={index}
             translateX={translateX}
             translateY={translateY}
@@ -142,7 +141,7 @@ export default function Atractions({
             <div className="image">
               <span className="big-span">{atractionName}</span>
             </div>
-          </Citacao>
+          </Atraction>
         );
       })}
     </Container>

@@ -6,7 +6,6 @@ import { useTransition } from '../../src/context/transitionContext';
 
 import Atractions from '../../src/components/Atractions';
 import Photos from '../../src/components/Photos';
-/* import PhotoGalerie from '../../src/components/PhotoGalerie'; */
 
 const Container = styled.div`  
   overflow: hidden;
@@ -16,7 +15,11 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: ${({ theme }) => theme.colors.bg};
+  background: ${(props) => props.eventTheme.page.bg};
+
+  h1, h2 {
+    font-family: 'Chau Philomene One', sans-serif;
+  }
   
   .event-title{
     height: 400px;
@@ -42,7 +45,7 @@ const Container = styled.div`
       align-items: center;
       justify-content: center;
       h1{
-        color: ${({ theme }) => theme.colors.primary};
+        color: ${(props) => props.eventTheme.page.mainTitle};
         font-size: 4.5rem;
       }
     }
@@ -54,7 +57,7 @@ const Container = styled.div`
     display: grid;
     grid-template-rows: 2fr 4fr 1fr;
     grid-gap: 50px;
-    color: ${({ theme }) => theme.colors.secondary};
+    color: ${(props) => props.eventTheme.page.text};
     margin: 100px 0;
 
     .eventTitle,
@@ -63,7 +66,7 @@ const Container = styled.div`
       margin: auto;
     }
     .eventTitle{
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${(props) => props.eventTheme.page.secondTitle};
       font-size: 3.4rem;
     }
     .main-text{
@@ -78,7 +81,7 @@ const Container = styled.div`
     width: 100%;
     .atractions-header{
       font-size: 3rem;
-      color: ${({ theme }) => theme.colors.secondary};
+      color: ${(props) => props.eventTheme.page.thirdTitle};
     }
   }
 
@@ -91,7 +94,7 @@ const Cover = styled.div`
   width: 100%;
   height: ${(props) => props.heigth};
   margin: 0 0 50px 0;
-  background: linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${(props) => props.coverUrl});
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${(props) => props.coverUrl});
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -106,7 +109,7 @@ const Cover = styled.div`
 
 export async function getStaticPaths() {
   const base = process.env.API_BASE_URL;
-  const url = new URL('/api/nextEvents/paths', base);
+  const url = new URL('/api/events/paths', base);
   let events = await fetch(url, {
     method: 'POST',
     headers: {
@@ -145,7 +148,7 @@ export async function getStaticProps(context) {
   };
 
   const base = process.env.API_BASE_URL;
-  const url = new URL('/api/nextEvents/props', base);
+  const url = new URL('/api/events/props', base);
   const eventData = await fetch(url, {
     method: 'POST',
     headers: {
@@ -192,7 +195,6 @@ export default function Event({
       colors: {
         primary: eventTheme.primary,
         secondary: eventTheme.secondary,
-        tertiary: eventTheme.tertiary,
         bg: eventTheme.bg,
       },
     });
@@ -207,16 +209,17 @@ export default function Event({
         colors: {
           primary: '#47453c',
           secondary: '#F6C60C',
-          tertiary: '#A37D05',
           bg: '#FFFFFF',
         },
       });
     };
   }, []);
+
   return (
     <>
       <Container
         coverImg={coverImg}
+        eventTheme={eventTheme}
       >
         {!props.err
         && (

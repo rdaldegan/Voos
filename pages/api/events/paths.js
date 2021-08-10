@@ -1,11 +1,11 @@
-import { futureEvents } from '../../../src/constants/mockEvents';
+import { pastEvents } from '../../../src/constants/mockEvents';
 
-const futureEventData = futureEvents;
+const eventsData = pastEvents;
 
 export async function getPaths() {
   return new Promise((resolve, reject) => {
-    if (futureEventData) {
-      const paths = futureEventData.map((event) => event.eventPageHref);
+    if (eventsData) {
+      const paths = eventsData.map((event) => event.eventPageHref);
       resolve(paths);
     } else reject(new Error('Erro ao buscar o evento'));
   });

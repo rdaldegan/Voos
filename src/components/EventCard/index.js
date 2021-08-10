@@ -50,7 +50,7 @@ const Container = styled.div`
     justify-content: center;
     color: white;
     font-weight: bolder;
-    color: ${(props) => props.colors.primary};
+    color: ${(props) => props.eventTheme.card.date};
     pointer-events: none;
   }
 
@@ -62,10 +62,10 @@ const Container = styled.div`
     pointer-events: none;
     button{
       box-shadow:
-        0 2.8px 2.2px ${(props) => `${props.colors.primary}5`},
-        0 6.7px 5.3px ${(props) => `${props.colors.primary}10`},
-        0 12.5px 10px ${(props) => `${props.colors.primary}15`},
-        0 22.3px 17.9px ${(props) => `${props.colors.primary}20`},
+        0 2.8px 2.2px ${(props) => `${props.eventTheme.card.button.primary}5`},
+        0 6.7px 5.3px ${(props) => `${props.eventTheme.card.button.primary}10`},
+        0 12.5px 10px ${(props) => `${props.eventTheme.card.button.primary}15`},
+        0 22.3px 17.9px ${(props) => `${props.eventTheme.card.button.primary}20`},
     }
   }
 `;
@@ -95,12 +95,12 @@ const Mes = styled.span.attrs(
   padding: 0;
   margin: -5px 0 5px 0;
   color: transparent;
-  -webkit-text-stroke: 0.1px ${(props) => props.colors.primary};
+  -webkit-text-stroke: 0.1px ${(props) => props.eventTheme.card.date};
   transition: all 0.8s cubic-bezier(.165,.84,.44,1);
 `;
 
 export default function EventCard({
-  img, name, dia, mes, ano, theme, backgroundImg, href,
+  img, name, dia, mes, ano, eventTheme, backgroundImg, href,
 }) {
   const router = useRouter();
   const ref = useRef(null);
@@ -135,7 +135,7 @@ export default function EventCard({
   return (
     <Container
       bgImg={backgroundImg}
-      colors={theme}
+      eventTheme={eventTheme}
       onMouseMove={(e) => { handleMouseMove(e); }}
       ref={ref}
     >
@@ -144,13 +144,13 @@ export default function EventCard({
       </div>
       <div className="event-date">
         <DiaAno
-          colors={theme}
+          eventTheme={eventTheme}
           coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
         >
           {dia}
         </DiaAno>
         <Mes
-          colors={theme}
+          eventTheme={eventTheme}
           coordXM={
             ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) * 1.5 : 0
           }
@@ -158,14 +158,14 @@ export default function EventCard({
           {mes.toLowerCase().slice(0, 3)}
         </Mes>
         <DiaAno
-          theme={theme}
+          eventTheme={eventTheme}
           coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
         >
           {ano}
         </DiaAno>
       </div>
       <div className="subscrible-link">
-        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Saiba Mais" theme={{ textColor: theme.primary, btnBg: theme.bg, effectBg: `${theme.primary}35` }} />
+        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Saiba Mais" btnTheme={{ textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35` }} />
       </div>
     </Container>
   );

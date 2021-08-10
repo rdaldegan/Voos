@@ -93,7 +93,7 @@ export default function Header() {
       <ul>
         {headerItens.map((item, index) => (
           <li key={index}>
-            <button type="button" onMouseDown={(e) => handleClick(e, item.href)}>
+            <button type="button" onMouseUp={(e) => handleClick(e, item.href)}>
               {item.name.toUpperCase()}
             </button>
           </li>

@@ -67,9 +67,9 @@ const Container = styled.div`
       margin: 0;
     }
     p{
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       line-height: 3rem;
-      color: ${(props) => props.colors.secondary};
+      color: ${(props) => props.eventTheme.card.text};
       border-radius: 8px;
       margin-right: 10%;
       backdrop-filter: blur(2px);
@@ -88,7 +88,7 @@ const Container = styled.div`
 `;
 
 export default function PastEventCard({
-  img, name, theme, backgroundImg, href, text, textFont,
+  img, name, eventTheme, backgroundImg, href, text, textFont,
 }) {
   const router = useRouter();
   const {
@@ -112,7 +112,7 @@ export default function PastEventCard({
   return (
     <Container
       bgImg={backgroundImg}
-      colors={theme}
+      eventTheme={eventTheme}
       textFont={textFont}
     >
       <div className="event-logo">
@@ -122,7 +122,7 @@ export default function PastEventCard({
         <p>{text}</p>
       </div>
       <div className="button-section">
-        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Página do Evento" theme={{ textColor: theme.primary, btnBg: theme.bg, effectBg: `${theme.primary}35` }} />
+        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Página do Evento" btnTheme={{ textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35` }} />
       </div>
     </Container>
   );

@@ -14,8 +14,6 @@ const Container = styled.div.attrs(
 )`
 
   transition: max-height 0.8s ${(props) => props.transition};
-
-
   position: relative;
   width: 80vw;
   margin: 20px auto;
@@ -51,8 +49,8 @@ const Container = styled.div.attrs(
     align-items: center;
     justify-content: center;
 
-    background: ${(props) => props.eventTheme.secondary};
-    color: ${(props) => props.eventTheme.primary};
+    background: ${(props) => props.eventTheme.page.arrowBtn.bg};
+    color: ${(props) => props.eventTheme.page.arrowBtn.arrow};
   }
 `;
 

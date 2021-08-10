@@ -48,7 +48,6 @@ export default function App({ Component, pageProps }) {
     colors: {
       primary: '#47453c',
       secondary: '#F6C60C',
-      tertiary: '#A37D05',
       bg: '#FFFFFF',
     },
   });

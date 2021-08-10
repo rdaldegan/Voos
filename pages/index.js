@@ -30,7 +30,7 @@ const Title = styled.div`
   }
 `;
 
-export default function Home() {
+export default function Index({ theme }) {
   const router = useRouter();
   const {
     setTransitionTo,
@@ -59,7 +59,7 @@ export default function Home() {
       <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
-        <CustomBtn handleClick={(e) => handleClick(e, '/home')} text="FAÇA PARTE" theme={{ textColor: '#47453c', btnBg: '#F6C60C', effectBg: '#A37D05' }} />
+        <CustomBtn handleClick={(e) => handleClick(e, '/home')} text="FAÇA PARTE" btnTheme={{ textColor: theme.colors.primary, btnBg: theme.colors.secondary, effectBg: `${theme.colors.primary}80` }} />
       </Title>
     </Container>
   );

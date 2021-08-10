@@ -153,7 +153,7 @@ export default function Calendario({ nextEvents }) {
           name={event.eventName}
           href={`/nextEvents/${event.eventPageHref}`}
           backgroundImg={event.coverImg}
-          theme={event.eventTheme}
+          eventTheme={event.eventTheme}
           dia={event.eventDate.dia}
           mes={event.eventDate.mes}
           ano={event.eventDate.ano}

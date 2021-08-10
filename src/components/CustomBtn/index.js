@@ -62,7 +62,7 @@ const BgDiv = styled.div.attrs(
  `;
 
 export default function CustomBtn({
-  handleClick, text, theme,
+  handleClick, text, btnTheme,
 }) {
   const buttonRef = useRef(null);
   const [coordX, setCoordX] = useState(0);
@@ -75,14 +75,14 @@ export default function CustomBtn({
   return (
     <CustomButton
       ref={buttonRef}
-      colors={theme}
+      colors={btnTheme}
       type="button"
       className="button"
-      onMouseDown={(e) => handleClick(e)}
+      onMouseUp={(e) => handleClick(e)}
       onMouseMove={(e) => handleMouseMove(e)}
     >
       <BgDiv
-        colors={theme}
+        colors={btnTheme}
         coordX={
         buttonRef.current ? Math.floor((coordX / buttonRef.current.clientWidth) * 100) : 0
       }
