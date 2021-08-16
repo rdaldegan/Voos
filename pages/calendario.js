@@ -5,6 +5,10 @@ import { useTransition } from '../src/context/transitionContext';
 import EventCard from '../src/components/EventCard';
 import MailchimpForm from '../src/components/MailchimpForm';
 
+// Remover depois de conectar com firebase
+import { futureEvents as databaseEvents } from '../src/constants/mockEvents';
+//
+
 const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
@@ -63,26 +67,7 @@ const Cover = styled.div`
 `;
 
 export async function getStaticProps() {
-  const base = process.env.API_BASE_URL;
-
-  const url = new URL('/api/calendario', base);
-  let nextEvents = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((response) => response)
-    // eslint-disable-next-line no-console
-    .catch((err) => console.log(err));
-
-  if (nextEvents) {
-    nextEvents = nextEvents[0].data;
-  } else {
-    nextEvents = [];
-  }
+  const nextEvents = databaseEvents;
 
   return {
     props: {

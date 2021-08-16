@@ -7,6 +7,10 @@ import { useTransition } from '../../src/context/transitionContext';
 import Atractions from '../../src/components/Atractions';
 import Photos from '../../src/components/Photos';
 
+// Remover quando conectar com o firebase
+import { pastEvents } from '../../src/constants/mockEvents';
+//
+
 const Container = styled.div`  
   overflow: hidden;
   min-height: 100vh;
@@ -108,25 +112,7 @@ const Cover = styled.div`
 `;
 
 export async function getStaticPaths() {
-  const base = process.env.API_BASE_URL;
-  const url = new URL('/api/events/paths', base);
-  let events = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((response) => response)
-    // eslint-disable-next-line no-console
-    .catch((err) => console.log(err));
-
-  if (events) {
-    events = events[0].data;
-  } else {
-    events = [];
-  }
+  const events = pastEvents.map((event) => event.eventPageHref);
 
   const paths = [];
 
@@ -143,25 +129,11 @@ export async function getStaticPaths() {
 export async function getStaticProps(context) {
   const { event } = context.params;
 
-  const data = {
-    event,
-  };
+  const found = pastEvents.find(
+    (current) => current.eventPageHref.toUpperCase() === event.toUpperCase(),
+  );
 
-  const base = process.env.API_BASE_URL;
-  const url = new URL('/api/events/props', base);
-  const eventData = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((response) => response)
-    .catch((err) => ({ data: [], err: `Error: ${err}` }));
-
-  const props = eventData[0];
+  const props = found;
 
   return {
     props: {
@@ -184,7 +156,7 @@ export default function Event({
     atractions,
     eventPhotos,
     eventTheme,
-  } = props.data;
+  } = props;
 
   const {
     setTransitionTo,

@@ -6,6 +6,10 @@ import { useTransition } from '../src/context/transitionContext';
 import PastEventCard from '../src/components/PastEventCard';
 import MailchimpForm from '../src/components/MailchimpForm';
 
+// Remover depois de conectar com firebase
+import { pastEvents as databaseEvents } from '../src/constants/mockEvents';
+//
+
 const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
@@ -62,29 +66,7 @@ const Cover = styled.div`
 `;
 
 export async function getStaticProps() {
-  const base = process.env.API_BASE_URL;
-
-  const url = new URL('/api/eventos', base);
-  let pastEvents = await fetch(url, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-    },
-  })
-    .then((response) => response.json())
-    .then((response) => {
-      if (response[0].err) throw new Error(response[0].err);
-      else return response;
-    })
-    // eslint-disable-next-line no-console
-    .catch((err) => console.log(err));
-
-  if (pastEvents) {
-    pastEvents = pastEvents[0].data;
-  } else {
-    pastEvents = [];
-  }
+  const pastEvents = databaseEvents;
 
   return {
     props: {

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
+import budgetForm from '../src/components/budgetForm';
 
 import { useTransition } from '../src/context/transitionContext';
 
@@ -56,6 +57,7 @@ export default function Orcamento() {
           faz ele acontecer da melhor forma pra você`}
         </h2>
       </Cover>
+      <budgetForm />
     </Container>
   );
 }
