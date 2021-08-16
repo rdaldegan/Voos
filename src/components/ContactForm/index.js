@@ -89,7 +89,7 @@ export default function ContactForm({ theme }) {
       setFeedback('Preencha todos os campos');
     } else if (email.indexOf('@') < 0) {
       setFeedback('O email precisa de um @');
-    } else if (email.indexOf('@') === 0 || email.indexOf('@') === email.length) {
+    } else if (email.indexOf('@') === 0 || email.indexOf('@') === email.length - 1) {
       setFeedback('Email inválido');
     } else {
       setFeedback('Enviando...');
@@ -138,7 +138,7 @@ export default function ContactForm({ theme }) {
         </div>
         <div className="message">
           <label htmlFor="message">Mensagem</label>
-          <textarea rows="5" cols="60" name="Meesage" onChange={(e) => { setMessage(e.target.value); }} value={message} />
+          <textarea rows="5" cols="60" name="Message" onChange={(e) => { setMessage(e.target.value); }} value={message} />
         </div>
         <CustomBtn
           handleClick={(e) => handleSubmit(e)}

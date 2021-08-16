@@ -63,8 +63,8 @@ const headerItens = [
     href: '/calendario',
   },
   {
-    name: 'Orçamento',
-    href: '/orcamento',
+    name: 'Contrate',
+    href: '/contrate',
   },
 ];
 
