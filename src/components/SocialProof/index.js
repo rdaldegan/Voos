@@ -99,7 +99,7 @@ export default function SocialProof({ data }) {
       if (componentIsMounted.current) {
         setCurrentItem((currentItem + 1) % citacoes.length);
       }
-    }, 4000);
+    }, 8000);
   }, [currentItem]);
 
   return (

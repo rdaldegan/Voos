@@ -5,6 +5,7 @@ export const pastEvents = [
     eventPageHref: 'cash-&-flow',
     coverImg: '/event-banner.png',
     coverImg2: '/event-banner.png',
+    cardCoverImg: '/event-banner.png',
     cardText: `Cras fringilla lacinia tempor. Donec imperdiet 
     nisi et placerat iaculis. Maecenas blandit orci vitae 
     nisl maximus, at rhoncus nibh fermentum.`,
@@ -72,6 +73,7 @@ export const pastEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
       },
       page: {
@@ -85,6 +87,7 @@ export const pastEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
         atractions: {
           text: '#bcbcbc',
@@ -106,6 +109,7 @@ export const pastEvents = [
     eventPageHref: 'contamina-dejavu-djonga',
     coverImg: '/event-banner.jpg',
     coverImg2: '/event-banner.png',
+    cardCoverImg: '/event-banner.png',
     cardText: `Cras fringilla lacinia tempor. Donec imperdiet 
     nisi et placerat iaculis. Maecenas blandit orci vitae 
     nisl maximus, at rhoncus nibh fermentum.`,
@@ -155,6 +159,7 @@ export const pastEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
       },
       page: {
@@ -168,6 +173,7 @@ export const pastEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
         atractions: {
           text: '#bcbcbc',
@@ -192,6 +198,7 @@ export const futureEvents = [
     eventPageHref: 'cash-&-flow',
     coverImg: '/event-banner.png',
     coverImg2: '/event-banner.png',
+    cardCoverImg: '/event-banner.png',
     pageTitle: 'Tenha o Cash e Viva o Flow',
     eventCallText: `Cras fringilla lacinia tempor. Donec imperdiet 
     nisi et placerat iaculis. Maecenas blandit orci vitae 
@@ -259,6 +266,7 @@ export const futureEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
       },
       page: {
@@ -272,6 +280,7 @@ export const futureEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
         atractions: {
           text: '#bcbcbc',
@@ -303,6 +312,7 @@ export const futureEvents = [
     eventPageHref: 'contamina-dejavu-djonga',
     coverImg: '/event-banner.jpg',
     coverImg2: '/event-banner.png',
+    cardCoverImg: '/event-banner.png',
     pageTitle: 'Tenha o Cash e Viva o Flow',
     eventCallText: `Cras fringilla lacinia tempor. Donec imperdiet 
     nisi et placerat iaculis. Maecenas blandit orci vitae 
@@ -352,6 +362,7 @@ export const futureEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
       },
       page: {
@@ -365,6 +376,7 @@ export const futureEvents = [
           primary: '#f70e0e',
           secondary: '#bcbcbc',
           bg: '#0c0b0a',
+          shadow: '#f70e0e',
         },
         atractions: {
           text: '#bcbcbc',

@@ -16,10 +16,10 @@ const CustomButton = styled.button`
   pointer-events: all;
   overflow: hidden;
   box-shadow:
-        0 2.8px 2.2px ${(props) => `${props.colors.btnBg}15`},
-        0 6.7px 5.3px ${(props) => `${props.colors.btnBg}20`},
-        0 12.5px 10px ${(props) => `${props.colors.btnBg}25`},
-        0 22.3px 17.9px ${(props) => `${props.colors.btnBg}30`};
+        0 2.8px 2.2px ${(props) => `${props.colors.shadow}15`},
+        0 6.7px 5.3px ${(props) => `${props.colors.shadow}20`},
+        0 12.5px 10px ${(props) => `${props.colors.shadow}25`},
+        0 22.3px 17.9px ${(props) => `${props.colors.shadow}30`};
   :hover{
     div{
       width: 1000px;

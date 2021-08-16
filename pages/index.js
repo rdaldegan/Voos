@@ -59,7 +59,13 @@ export default function Index({ theme }) {
       <Image src="/concert.jpg" layout="fill" />
       <Title>
         <h2>O QUE FAZ A SUA IMAGINAÇÃO VOAR?</h2>
-        <CustomBtn handleClick={(e) => handleClick(e, '/home')} text="FAÇA PARTE" btnTheme={{ textColor: theme.colors.primary, btnBg: theme.colors.secondary, effectBg: `${theme.colors.primary}80` }} />
+        <CustomBtn
+          handleClick={(e) => handleClick(e, '/home')}
+          text="FAÇA PARTE"
+          btnTheme={{
+            textColor: theme.colors.primary, btnBg: theme.colors.secondary, effectBg: `${theme.colors.primary}80`, shadow: theme.colors.secondary,
+          }}
+        />
       </Title>
     </Container>
   );

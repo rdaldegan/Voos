@@ -121,7 +121,7 @@ export default function Eventos({ pastEvents }) {
           img={event.logoImg}
           name={event.eventName}
           href={`/events/${event.eventPageHref}`}
-          backgroundImg={event.coverImg}
+          backgroundImg={event.cardCoverImg}
           text={event.cardText}
           eventTheme={event.eventTheme}
         />

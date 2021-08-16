@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { useInView } from 'react-intersection-observer';
 
 import { useTransition } from '../../context/transitionContext';
 import CustomBtn from '../CustomBtn';
 
-const Container = styled.div`
-  
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const Container = styled.div.attrs(
+  ({
+    offset,
+  }) => ({
+    style: {
+      transform: `translateY(${offset})`,
+    },
+  }),
+)`
+
+  transition: 0.4s cubic-bezier(.36,.19,.63,1.41);
 
   position: relative;
   background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${(props) => props.bgImg});
@@ -52,33 +69,30 @@ const Container = styled.div`
   }
   
   .info-text{
-    position: relative;
     grid-column-start: 2;
     grid-column-end: 3;
     grid-row-start: 1;
-    grid-row-end: 2;
+    grid-row-end: 3;
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    .blur-bg{
-      background-color: blue;
-      margin: 0;
-    }
+    background-color: #bcbcbc20;
+    backdrop-filter: blur(2px);
+
     p{
       font-size: 2.2rem;
       line-height: 3rem;
       color: ${(props) => props.eventTheme.card.text};
       border-radius: 8px;
-      margin-right: 10%;
-      backdrop-filter: blur(2px);
+      margin: 5%;
     }
   }
 
   .button-section{
     grid-column-start: 1;
-    grid-column-end: 3;
+    grid-column-end: 2;
     grid-row-start: 2;
     grid-row-end: 3;
     display: flex;
@@ -96,6 +110,12 @@ export default function PastEventCard({
     setTransitionOpen,
   } = useTransition();
 
+  const { ref, inView } = useInView();
+  const [animated, setAnimated] = useState(false);
+  useEffect(() => {
+    if (inView && window !== undefined) setAnimated(true);
+  }, [inView]);
+
   function handleClick(e, path) {
     if (e.button === 1 || (e.button === 0 && e.ctrlKey === true)) {
       window.open(path);
@@ -110,20 +130,31 @@ export default function PastEventCard({
   }
 
   return (
-    <Container
-      bgImg={backgroundImg}
-      eventTheme={eventTheme}
-      textFont={textFont}
+    <Div
+      ref={ref}
     >
-      <div className="event-logo">
-        <img src={img} alt={`Evento ${name}`} />
-      </div>
-      <div className="info-text">
-        <p>{text}</p>
-      </div>
-      <div className="button-section">
-        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Página do Evento" btnTheme={{ textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35` }} />
-      </div>
-    </Container>
+      <Container
+        bgImg={backgroundImg}
+        eventTheme={eventTheme}
+        textFont={textFont}
+        offset={animated ? '0px' : '200px'}
+      >
+        <div className="event-logo">
+          <img src={img} alt={`Evento ${name}`} />
+        </div>
+        <div className="info-text">
+          <p>{text}</p>
+        </div>
+        <div className="button-section">
+          <CustomBtn
+            handleClick={(e) => handleClick(e, href)}
+            text="Página do Evento"
+            btnTheme={{
+              textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35`, shadow: eventTheme.card.button.shadow,
+            }}
+          />
+        </div>
+      </Container>
+    </Div>
   );
 }

@@ -140,7 +140,16 @@ export default function ContactForm({ theme }) {
           <label htmlFor="message">Mensagem</label>
           <textarea rows="5" cols="60" name="Meesage" onChange={(e) => { setMessage(e.target.value); }} value={message} />
         </div>
-        <CustomBtn handleClick={(e) => handleSubmit(e)} text="Enviar" btnTheme={{ textColor: theme.colors.secondary, btnBg: theme.colors.primary, effectBg: theme.colors.bg }} />
+        <CustomBtn
+          handleClick={(e) => handleSubmit(e)}
+          text="Enviar"
+          btnTheme={{
+            textColor: theme.colors.secondary,
+            btnBg: theme.colors.primary,
+            effectBg: theme.colors.bg,
+            shadow: theme.colors.primary,
+          }}
+        />
         <div className="feedback">
           {feedback && <span>{feedback}</span>}
         </div>

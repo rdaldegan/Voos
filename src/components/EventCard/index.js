@@ -1,11 +1,30 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components';
 import { useRouter } from 'next/router';
+import { useInView } from 'react-intersection-observer';
 
 import { useTransition } from '../../context/transitionContext';
 import CustomBtn from '../CustomBtn';
 
-const Container = styled.div`
+const Div = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+`;
+
+const Container = styled.div.attrs(
+  ({
+    offset,
+  }) => ({
+    style: {
+      transform: `translateY(${offset})`,
+    },
+  }),
+)`
+  transition: 0.4s cubic-bezier(.36,.19,.63,1.41);
+
   background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${(props) => props.bgImg});
   background-position: center;
   background-size: cover;
@@ -60,13 +79,6 @@ const Container = styled.div`
     align-items: center;
     justify-content: center;
     pointer-events: none;
-    button{
-      box-shadow:
-        0 2.8px 2.2px ${(props) => `${props.eventTheme.card.button.primary}5`},
-        0 6.7px 5.3px ${(props) => `${props.eventTheme.card.button.primary}10`},
-        0 12.5px 10px ${(props) => `${props.eventTheme.card.button.primary}15`},
-        0 22.3px 17.9px ${(props) => `${props.eventTheme.card.button.primary}20`},
-    }
   }
 `;
 
@@ -103,16 +115,22 @@ export default function EventCard({
   img, name, dia, mes, ano, eventTheme, backgroundImg, href,
 }) {
   const router = useRouter();
-  const ref = useRef(null);
+  const moveRef = useRef(null);
   const {
     setTransitionTo,
     setTransitionOpen,
   } = useTransition();
 
+  const { ref, inView } = useInView();
+  const [animated, setAnimated] = useState(false);
+  useEffect(() => {
+    if (inView && window !== undefined) setAnimated(true);
+  }, [inView]);
+
   const [coordX, setCoordX] = useState(0);
 
   useEffect(() => {
-    setCoordX(ref.current.clientWidth / 2);
+    setCoordX(moveRef.current.clientWidth / 2);
   }, []);
 
   function handleMouseMove(e) {
@@ -133,40 +151,51 @@ export default function EventCard({
   }
 
   return (
-    <Container
-      bgImg={backgroundImg}
-      eventTheme={eventTheme}
-      onMouseMove={(e) => { handleMouseMove(e); }}
+    <Div
       ref={ref}
     >
-      <div className="event-infos">
-        <img src={img} alt={`Evento ${name}`} />
-      </div>
-      <div className="event-date">
-        <DiaAno
-          eventTheme={eventTheme}
-          coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
-        >
-          {dia}
-        </DiaAno>
-        <Mes
-          eventTheme={eventTheme}
-          coordXM={
-            ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) * 1.5 : 0
-          }
-        >
-          {mes.toLowerCase().slice(0, 3)}
-        </Mes>
-        <DiaAno
-          eventTheme={eventTheme}
-          coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
-        >
-          {ano}
-        </DiaAno>
-      </div>
-      <div className="subscrible-link">
-        <CustomBtn handleClick={(e) => handleClick(e, href)} text="Saiba Mais" btnTheme={{ textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35` }} />
-      </div>
-    </Container>
+      <Container
+        bgImg={backgroundImg}
+        eventTheme={eventTheme}
+        onMouseMove={(e) => { handleMouseMove(e); }}
+        ref={moveRef}
+        offset={animated ? '0px' : '200px'}
+      >
+        <div className="event-infos">
+          <img src={img} alt={`Evento ${name}`} />
+        </div>
+        <div className="event-date">
+          <DiaAno
+            eventTheme={eventTheme}
+            coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
+          >
+            {dia}
+          </DiaAno>
+          <Mes
+            eventTheme={eventTheme}
+            coordXM={
+              ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) * 1.5 : 0
+            }
+          >
+            {mes.toLowerCase().slice(0, 3)}
+          </Mes>
+          <DiaAno
+            eventTheme={eventTheme}
+            coordXDA={ref.current ? Math.floor((coordX / ref.current.clientWidth) * 100 - 50) : 0}
+          >
+            {ano}
+          </DiaAno>
+        </div>
+        <div className="subscrible-link">
+          <CustomBtn
+            handleClick={(e) => handleClick(e, href)}
+            text="Saiba Mais"
+            btnTheme={{
+              textColor: eventTheme.card.button.primary, btnBg: eventTheme.card.button.bg, effectBg: `${eventTheme.card.button.primary}35`, shadow: eventTheme.card.button.shadow,
+            }}
+          />
+        </div>
+      </Container>
+    </Div>
   );
 }

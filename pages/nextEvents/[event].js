@@ -7,7 +7,6 @@ import { useTransition } from '../../src/context/transitionContext';
 
 import CustomBtn from '../../src/components/CustomBtn';
 import Atractions from '../../src/components/Atractions';
-/* import PhotoGalerie from '../../src/components/PhotoGalerie'; */
 
 const Container = styled.div`  
   overflow: hidden;
@@ -298,9 +297,10 @@ export default function Event({
                       handleClick={(e) => handleClick(e, ticket.buyLink)}
                       text="Garanta aqui o seu ingresso!"
                       btnTheme={{
-                        textColor: eventTheme.bg,
-                        btnBg: eventTheme.primary,
-                        effectBg: eventTheme.secondary,
+                        textColor: eventTheme.page.button.primary,
+                        btnBg: eventTheme.page.button.bg,
+                        effectBg: eventTheme.page.button.secondary,
+                        shadow: eventTheme.page.button.primary,
                       }}
                     />
                   </div>
@@ -312,9 +312,10 @@ export default function Event({
                       handleClick={() => {}}
                       text="Ingressos a venda em breve"
                       btnTheme={{
-                        textColor: eventTheme.bg,
-                        btnBg: eventTheme.primary,
-                        effectBg: eventTheme.secondary,
+                        textColor: eventTheme.page.button.primary,
+                        btnBg: eventTheme.page.button.bg,
+                        effectBg: eventTheme.page.button.secondary,
+                        shadow: eventTheme.page.button.primary,
                       }}
                     />
                   </div>

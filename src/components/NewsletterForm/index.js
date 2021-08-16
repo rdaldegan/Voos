@@ -157,7 +157,13 @@ export default function NewsletterForm({ status, message, onValidated }) {
           className="email-input"
           onKeyUp={(event) => handleInputKeyEvent(event)}
         />
-        <CustomBtn handleClick={(e) => handleFormSubmit(e)} text="Faça Parte" btnTheme={{ textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05' }} />
+        <CustomBtn
+          handleClick={(e) => handleFormSubmit(e)}
+          text="Faça Parte"
+          btnTheme={{
+            textColor: '#FFFFFF', btnBg: '#47453c', effectBg: '#A37D05', shadow: '#47453c',
+          }}
+        />
         <div className="info">
           {status === 'sending' && <div>Sending...</div>}
           {status === 'error' || error ? (
