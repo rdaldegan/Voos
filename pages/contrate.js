@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import BudgetForm from '../src/components/BudgetForm';
+import YourEventForm from '../src/components/YourEventForm';
 
 import { useTransition } from '../src/context/transitionContext';
 
@@ -57,7 +57,7 @@ export default function Orcamento({ theme }) {
           faz ele acontecer da melhor forma pra você`}
         </h2>
       </Cover>
-      <BudgetForm theme={theme} />
+      <YourEventForm theme={theme} />
     </Container>
   );
 }
