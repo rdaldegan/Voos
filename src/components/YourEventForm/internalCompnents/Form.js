@@ -4,7 +4,7 @@ import styled from 'styled-components';
 
 import { TiArrowLeftOutline, TiArrowRightOutline } from 'react-icons/ti';
 
-import CustomBtn from '../CustomBtn';
+import CustomBtn from '../../CustomBtn';
 
 const Container = styled.div`
   overflow: hidden;

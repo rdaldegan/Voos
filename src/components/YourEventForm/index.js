@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import ImageDiv from './ImageDiv';
-import Form from './Form';
+import ImageDiv from './internalCompnents/ImageDiv';
+import Form from './internalCompnents/Form';
 
 const Container = styled.div`
   position: relative;
@@ -17,7 +17,7 @@ const Container = styled.div`
   background-color: #FFFFFF;
 `;
 
-export default function BudgetForm({ theme }) {
+export default function YpurEventsForm({ theme }) {
   return (
     <Container>
       <ImageDiv />
